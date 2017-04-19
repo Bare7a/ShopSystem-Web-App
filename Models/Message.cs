@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Models
 {
@@ -7,6 +8,10 @@ namespace Models
         public int Id { get; set; }
 
         public string Content { get; set; }
+
+        public bool IsSeen { get; set; }
+
+        public DateTime CreateDate { get; set; }
 
         [Required]
         public string SenderId { get; set; }

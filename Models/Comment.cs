@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Models
 {
@@ -10,6 +11,8 @@ namespace Models
         [MinLength(3)]
         [MaxLength(200)]
         public string Content { get; set; }
+
+        public DateTime CreateDate { get; set; }
 
         [Required]
         public string UserId { get; set; }
