@@ -11,6 +11,7 @@ namespace Models
         [MaxLength(100)]
         public string UrlAddress { get; set; }
 
+        [Required]
         public VideoType VideoType { get; set; }
 
         [Required]

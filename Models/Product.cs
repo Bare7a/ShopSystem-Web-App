@@ -26,7 +26,7 @@ namespace Models
 
         [Required]
         [MinLength(3)]
-        [MaxLength(200)]
+        [MaxLength(500)]
         public string Description { get; set; }
 
         public decimal Price { get; set; }

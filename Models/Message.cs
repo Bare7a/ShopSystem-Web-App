@@ -7,6 +7,9 @@ namespace Models
     {
         public int Id { get; set; }
 
+        [Required]
+        [MinLength(3)]
+        [MaxLength(1000)]
         public string Content { get; set; }
 
         public bool IsSeen { get; set; }

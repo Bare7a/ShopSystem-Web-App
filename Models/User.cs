@@ -32,7 +32,6 @@
         [MaxLength(60)]
         public string Facebook { get; set; }
 
-        [Required]
         [MinLength(3)]
         [MaxLength(60)]
         public string Skype { get; set; }
