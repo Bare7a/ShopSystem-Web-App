@@ -7,7 +7,7 @@ namespace Models
         public int Id { get; set; }
 
         [Required]
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
 
         [Required]
         public int ProductId { get; set; }

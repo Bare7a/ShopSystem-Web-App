@@ -26,7 +26,7 @@
             this.recievedFeedbacks = new HashSet<Feedback>();
         }
 
-        public byte[] ProfilePicture { get; set; }
+        public string ProfilePicture { get; set; }
 
         [MinLength(3)]
         [MaxLength(60)]

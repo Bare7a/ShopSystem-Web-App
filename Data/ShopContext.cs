@@ -12,24 +12,23 @@ namespace Data
         {
         }
 
-        public virtual DbSet<Category> Cateogries { get; set; }
+        public virtual IDbSet<Category> Cateogries { get; set; }
 
-        public virtual DbSet<City> Cities { get; set; }
+        public virtual IDbSet<City> Cities { get; set; }
 
-        public virtual DbSet<Comment> Comments { get; set; }
+        public virtual IDbSet<Comment> Comments { get; set; }
 
-        public virtual DbSet<Country> Countries { get; set; }
+        public virtual IDbSet<Country> Countries { get; set; }
 
-        public virtual DbSet<Feedback> Feedbacks { get; set; }
+        public virtual IDbSet<Feedback> Feedbacks { get; set; }
 
-        public virtual DbSet<Message> Messages { get; set; }
+        public virtual IDbSet<Message> Messages { get; set; }
 
-        public virtual DbSet<Picture> Pictures { get; set; }
+        public virtual IDbSet<Picture> Pictures { get; set; }
 
-        public virtual DbSet<Product> Products { get; set; }
+        public virtual IDbSet<Product> Products { get; set; }
 
-        public virtual DbSet<Video> Videos { get; set; }
-
+        public virtual IDbSet<Video> Videos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -61,7 +60,10 @@ namespace Data
 
             base.OnModelCreating(modelBuilder);
         }
-    }
 
-    
+        public static ShopContext Create()
+        {
+            return new ShopContext();
+        }
+    }
 }
