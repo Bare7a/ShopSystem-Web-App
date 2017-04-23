@@ -22,7 +22,7 @@ namespace Services.Models
         [Required]
         public int CategoryId { get; set; }
 
-        public ICollection<PictureBindingModel> pictures { get; set; }
-        public ICollection<VideoBindingModel> videos { get; set; }
+        public IEnumerable<PictureBindingModel> pictures { get; set; }
+        public IEnumerable<VideoBindingModel> videos { get; set; }
     }
 }

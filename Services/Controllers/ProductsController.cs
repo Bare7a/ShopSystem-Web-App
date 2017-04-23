@@ -72,11 +72,13 @@ namespace Services.Controllers
                 Name = p.Name,
                 Price = p.Price,
                 Quantity = p.Quantity,
+                Description = p.Description,
                 Picture = p.Pictures.Select(pi => pi.Image).FirstOrDefault(),
-                Category = p.Category.Name,
-                CreateDate = p.CreateDate,
                 Submiter = p.User.UserName,
                 Feedback = p.User.RecievedFeedbacks.Count == 0 ? 0.0 : p.User.RecievedFeedbacks.Sum(f => f.Score) / p.User.RecievedFeedbacks.Count(),
+                City = p.User.City.Name,
+                Category = p.Category.Name,
+                CreateDate = p.CreateDate,
                 Comments = p.Comments.Count
             }).ToList();
 
@@ -103,12 +105,24 @@ namespace Services.Controllers
                 {
                     Id = p.Id,
                     Name = p.Name,
+                    Price = p.Price,
+                    Quantity = p.Quantity,
+                    Description = p.Description,
+                    Submiter = p.User.UserName,
+                    Feedback = p.User.RecievedFeedbacks.Count == 0 ? 0.0 : p.User.RecievedFeedbacks.Sum(f => f.Score) / p.User.RecievedFeedbacks.Count(),
+                    City = p.User.City.Name,
+                    Category = p.Category.Name,
                     Pictures = p.Pictures.Select(pi => new PictureViewModel 
                     {
                         Id = pi.Id,
                         Image = pi.Image
                     }),
-                    Category = p.Category.Name,
+                    Videos = p.Videos.Select(v => new VideoViewModel
+                    {
+                        Id = v.Id,
+                        UrlAddress = v.UrlAddress,
+                        VideoType = ((VideoType)v.VideoType).ToString()
+                    }),
                     Comments = p.Comments.Select(c => new CommentViewModel
                     {
                         Id = c.Id,
@@ -116,19 +130,8 @@ namespace Services.Controllers
                         CreateDate = c.CreateDate,
                         Username = c.User.UserName
                     }),
-                    CreateDate = p.CreateDate,
-                    Description = p.Description,
-                    Price = p.Price,
-                    Quantity = p.Quantity,
-                    Videos = p.Videos.Select(v=> new VideoViewModel
-                    {
-                        Id = v.Id,
-                        UrlAddress = v.UrlAddress,
-                        VideoType = ((VideoType)v.VideoType).ToString()
-                    }),
-                    Submiter = p.User.UserName,
-                    Feedback = p.User.RecievedFeedbacks.Count == 0 ? 0.0 : p.User.RecievedFeedbacks.Sum(f => f.Score) / p.User.RecievedFeedbacks.Count()
-                })
+                    CreateDate = p.CreateDate
+                   })
                 .FirstOrDefault(p => p.Id == id);
            
             if(product == null)

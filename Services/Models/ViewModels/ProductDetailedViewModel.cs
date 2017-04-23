@@ -21,6 +21,8 @@ namespace Services.Models.ViewModels
 
         public double Feedback { get; set; }
 
+        public string City { get; set; }
+
         public IEnumerable<CommentViewModel> Comments { get; set; }
 
         public IEnumerable<PictureViewModel> Pictures { get; set; }
