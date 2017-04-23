@@ -19,10 +19,6 @@ namespace Models
         [MaxLength(30)]
         public string Name { get; set; }
 
-        [Required]
-        public int CountryId { get; set; }
-        public Country Country { get; set; }
-
         public ICollection<User> Users
         {
             get { return this.users; }

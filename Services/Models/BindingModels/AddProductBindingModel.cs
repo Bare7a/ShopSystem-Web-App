@@ -1,13 +1,10 @@
-﻿using Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Services.Models
 {
     public class AddProductBindingModel
     {
-        public int Id { get; set; }
-
         [Required]
         [MinLength(3)]
         [MaxLength(60)]
@@ -24,19 +21,8 @@ namespace Services.Models
 
         [Required]
         public int CategoryId { get; set; }
+
+        public ICollection<PictureBindingModel> pictures { get; set; }
+        public ICollection<VideoBindingModel> videos { get; set; }
     }
-
-
-
-    //public class AddProductVideoBindingModel
-    //{
-    //    [Required]
-    //    [MinLength(3)]
-    //    [MaxLength(100)]
-    //    public string UrlAddress { get; set; }
-
-    //    [Required]
-    //    public VideoType VideoType { get; set; }
-    //}
-
 }

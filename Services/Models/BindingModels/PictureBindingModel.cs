@@ -2,7 +2,7 @@
 
 namespace Services.Models
 {
-    public class AddProductPictureBindingModel
+    public class PictureBindingModel
     {
         [Required]
         public string Image { get; set; }

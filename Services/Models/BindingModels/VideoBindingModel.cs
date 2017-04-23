@@ -2,7 +2,7 @@
 
 namespace Services.Models
 {
-    public class AddProductVideoBindingModel
+    public class VideoBindingModel
     {
         [Required]
         public string UrlAddress { get; set; }
