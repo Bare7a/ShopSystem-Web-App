@@ -21,7 +21,17 @@ namespace Services.Controllers
             }
 
             var products = this.Data.Products.AsQueryable();
-            
+
+            if (model.Name != null)
+            {
+                products = products.Where(p => p.Name.Contains(model.Name));
+            }
+
+            if (model.Description != null)
+            {
+                products = products.Where(p => p.Description.Contains(model.Description));
+            }
+
             if (model.CategoryId.HasValue)
             {
                 products = products.Where(p => p.Category.Id == model.CategoryId);

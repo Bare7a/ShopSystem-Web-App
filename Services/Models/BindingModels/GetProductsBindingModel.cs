@@ -9,10 +9,21 @@ namespace Services.Models.BindingModels
             this.StartPage = 1;
         }
 
+
+        [MinLength(3)]
+        [MaxLength(100)]
+        public string Name { get; set; }
+
+        [MinLength(3)]
+        [MaxLength(100)]
+        public string Description { get; set; }
+
         public int? CategoryId { get; set; }
 
         public int? CityId { get; set; }
 
+        [MinLength(3)]
+        [MaxLength(20)]
         public string SortBy { get; set; }
 
         [Range(1, 100000, ErrorMessage = "Page number should be in range [1...100000].")]
