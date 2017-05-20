@@ -16,7 +16,7 @@ namespace Models
 
         [Required]
         [MinLength(3)]
-        [MaxLength(30)]
+        [MaxLength(100)]
         public string Name { get; set; }
 
         public ICollection<User> Users

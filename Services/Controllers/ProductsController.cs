@@ -81,6 +81,7 @@ namespace Services.Controllers
                 Id = p.Id,
                 Name = p.Name,
                 Price = p.Price,
+                Condition = (p.Condition).ToString(),
                 Quantity = p.Quantity,
                 Description = p.Description,
                 Picture = p.Pictures.Select(pi => pi.Image).FirstOrDefault(),
@@ -116,6 +117,7 @@ namespace Services.Controllers
                     Id = p.Id,
                     Name = p.Name,
                     Price = p.Price,
+                    Condition = (p.Condition).ToString(),
                     Quantity = p.Quantity,
                     Description = p.Description,
                     Submiter = p.User.UserName,
@@ -131,7 +133,7 @@ namespace Services.Controllers
                     {
                         Id = v.Id,
                         UrlAddress = v.UrlAddress,
-                        VideoType = ((VideoType)v.VideoType).ToString()
+                        VideoType = (v.VideoType).ToString()
                     }),
                     Comments = p.Comments.Select(c => new CommentViewModel
                     {
@@ -199,6 +201,7 @@ namespace Services.Controllers
                 Name = model.Name,
                 Description = model.Description,
                 Price = model.Price,
+                Condition = (ConditionType) model.Condition,
                 Quantity = model.Quantity,
                 Pictures = pictures,
                 Videos = videos,
@@ -211,6 +214,33 @@ namespace Services.Controllers
             this.Data.SaveChanges();
 
             return Ok();
+        }
+
+        [HttpDelete]
+        public IHttpActionResult DeleteProduct(int id)
+        {
+            var product = this.Data.Products.FirstOrDefault(d => d.Id == id);
+            if (product == null)
+            {
+                return this.BadRequest("Product #" + id + " not found!");
+            }
+
+            var userId = User.Identity.GetUserId();
+            if (product.UserId != userId)
+            {
+                return this.Unauthorized();
+            }
+
+            this.Data.Products.Remove(product);
+
+            this.Data.SaveChanges();
+
+            return this.Ok(
+               new
+               {
+                   message = "Product #" + id + " deleted successfully."
+               }
+           );
         }
     }
 }

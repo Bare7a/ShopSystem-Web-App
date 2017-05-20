@@ -1,5 +1,6 @@
 namespace Data
 {
+    using Data.Migrations;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
     using System.Data.Entity;
@@ -10,6 +11,7 @@ namespace Data
         public ShopContext()
             : base("ShopContext")
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ShopContext, Configuration>());
         }
 
         public virtual IDbSet<Category> Categories { get; set; }
@@ -30,8 +32,6 @@ namespace Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-
             modelBuilder.Entity<Message>()
                 .HasRequired(m => m.Sender)
                 .WithMany(t => t.SentMessages)
@@ -39,10 +39,10 @@ namespace Data
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Message>()
-                    .HasRequired(m => m.Addressee)
-                    .WithMany(t => t.RecievedMessages)
-                    .HasForeignKey(m => m.AddresseeId)
-                    .WillCascadeOnDelete(false);
+                .HasRequired(m => m.Addressee)
+                .WithMany(t => t.RecievedMessages)
+                .HasForeignKey(m => m.AddresseeId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Feedback>()
                 .HasRequired(m => m.Sender)
@@ -51,10 +51,15 @@ namespace Data
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Feedback>()
-                    .HasRequired(m => m.Addressee)
-                    .WithMany(t => t.RecievedFeedbacks)
-                    .HasForeignKey(m => m.AddresseeId)
-                    .WillCascadeOnDelete(false);
+                .HasRequired(m => m.Addressee)
+                .WithMany(t => t.RecievedFeedbacks)
+                .HasForeignKey(m => m.AddresseeId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.Comments)
+                .WithRequired(u => u.User)
+                .WillCascadeOnDelete(false);
 
             base.OnModelCreating(modelBuilder);
         }

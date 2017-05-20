@@ -10,6 +10,8 @@ namespace Services.Models.ViewModels
 
         public decimal Price { get; set; }
 
+        public string Condition { get; set; }
+
         public int Quantity { get; set; }
 
         public string Description { get; set; }

@@ -9,9 +9,15 @@ namespace Models
 
         [Required]
         [MinLength(3)]
+        [MaxLength(50)]
+        public string Title { get; set; }
+
+        [Required]
+        [MinLength(3)]
         [MaxLength(1000)]
         public string Content { get; set; }
 
+        [Required]
         public bool IsSeen { get; set; }
 
         public DateTime CreateDate { get; set; }

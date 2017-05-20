@@ -9,7 +9,7 @@ namespace Services.Models
         [MaxLength(100)]
         public string UrlAddress { get; set; }
 
-        [Required]
+        [Range(0,2)]
         public int VideoType { get; set; }
     }
 }

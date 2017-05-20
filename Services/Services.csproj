@@ -231,6 +231,7 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -238,11 +239,15 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BindingModels\AddCategoryBindingModel.cs" />
+    <Compile Include="Models\BindingModels\AddMessageBindingModel.cs" />
     <Compile Include="Models\BindingModels\AddProductBindingModel.cs" />
+    <Compile Include="Models\BindingModels\GetMessagesBindingModel.cs" />
     <Compile Include="Models\BindingModels\GetProductsBindingModel.cs" />
     <Compile Include="Models\BindingModels\VideoBindingModel.cs" />
     <Compile Include="Models\BindingModels\PictureBindingModel.cs" />
     <Compile Include="Models\ViewModels\CommentViewModel.cs" />
+    <Compile Include="Models\ViewModels\MessageDetailedViewModel.cs" />
+    <Compile Include="Models\ViewModels\MessagesViewModel.cs" />
     <Compile Include="Models\ViewModels\PictureViewModel.cs" />
     <Compile Include="Models\ViewModels\ProductDetailedViewModel.cs" />
     <Compile Include="Models\ViewModels\ProductsViewModel.cs" />

@@ -24,14 +24,16 @@ namespace Models
         [MaxLength(60)]
         public string Name { get; set; }
 
+        public decimal Price { get; set; }
+
+        public int Quantity { get; set; }
+
+        public ConditionType Condition { get; set; }
+
         [Required]
         [MinLength(3)]
         [MaxLength(500)]
         public string Description { get; set; }
-
-        public decimal Price { get; set; }
-
-        public int Quantity { get; set; }
 
         public DateTime CreateDate { get; set; }
 
