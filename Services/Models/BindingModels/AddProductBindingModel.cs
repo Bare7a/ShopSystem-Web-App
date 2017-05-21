@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Services.Models
+namespace Services.Models.BindingModels
 {
     public class AddProductBindingModel
     {
@@ -24,7 +24,7 @@ namespace Services.Models
 
         public int CategoryId { get; set; }
 
-        public IEnumerable<PictureBindingModel> pictures { get; set; }
-        public IEnumerable<VideoBindingModel> videos { get; set; }
+        public IEnumerable<ProductPictureBindingModel> pictures { get; set; }
+        public IEnumerable<ProductVideoBindingModel> videos { get; set; }
     }
 }

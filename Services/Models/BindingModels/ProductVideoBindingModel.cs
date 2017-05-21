@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Services.Models
+namespace Services.Models.BindingModels
 {
-    public class VideoBindingModel
+    public class ProductVideoBindingModel
     {
         [Required]
         [MinLength(3)]

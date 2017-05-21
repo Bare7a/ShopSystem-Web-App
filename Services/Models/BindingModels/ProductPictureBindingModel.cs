@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Services.Models
+namespace Services.Models.BindingModels
 {
-    public class PictureBindingModel
+    public class ProductPictureBindingModel
     {
         [Required]
         public string Image { get; set; }

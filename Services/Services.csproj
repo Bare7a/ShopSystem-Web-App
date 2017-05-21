@@ -230,21 +230,32 @@
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Controllers\FeedbacksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Controllers\PicturesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\VideosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BindingModels\AddCategoryBindingModel.cs" />
+    <Compile Include="Models\BindingModels\AddCommentBindingModel.cs" />
+    <Compile Include="Models\BindingModels\AddFeedbackBindingModel.cs" />
     <Compile Include="Models\BindingModels\AddMessageBindingModel.cs" />
+    <Compile Include="Models\BindingModels\PutPictureBindingModel.cs" />
+    <Compile Include="Models\BindingModels\PutVideoBindingModel.cs" />
+    <Compile Include="Models\BindingModels\ProductPictureBindingModel.cs" />
     <Compile Include="Models\BindingModels\AddProductBindingModel.cs" />
+    <Compile Include="Models\BindingModels\ProductVideoBindingModel.cs" />
     <Compile Include="Models\BindingModels\GetMessagesBindingModel.cs" />
     <Compile Include="Models\BindingModels\GetProductsBindingModel.cs" />
-    <Compile Include="Models\BindingModels\VideoBindingModel.cs" />
-    <Compile Include="Models\BindingModels\PictureBindingModel.cs" />
+    <Compile Include="Models\BindingModels\PatchCommentBindingModel.cs" />
+    <Compile Include="Models\BindingModels\AddVideoBindingModel.cs" />
+    <Compile Include="Models\BindingModels\AddPictureBindingModel.cs" />
     <Compile Include="Models\ViewModels\CommentViewModel.cs" />
     <Compile Include="Models\ViewModels\MessageDetailedViewModel.cs" />
     <Compile Include="Models\ViewModels\MessagesViewModel.cs" />

@@ -121,6 +121,11 @@ namespace Services.Controllers
                 return this.BadRequest("The user you are trying to send message to doesn't exist!");
             }
 
+            if (user.Id == userId)
+            {
+                return this.BadRequest("You cannot send a message to yourself!");
+            }
+
             var message = new Message
             {
                 Title = model.Title,

@@ -1,5 +1,4 @@
-﻿using Services.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -213,7 +212,7 @@ namespace Services.Controllers
             this.Data.Products.Add(product);
             this.Data.SaveChanges();
 
-            return Ok();
+            return Ok("Product was successfully added!");
         }
 
         [HttpDelete]
@@ -235,12 +234,7 @@ namespace Services.Controllers
 
             this.Data.SaveChanges();
 
-            return this.Ok(
-               new
-               {
-                   message = "Product #" + id + " deleted successfully."
-               }
-           );
+            return this.Ok("Product #" + id + " was deleted successfully.");
         }
     }
 }
