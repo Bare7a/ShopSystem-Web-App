@@ -16,7 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using Services.Models;
 using Services.Providers;
 using Services.Results;
-using Models;
+using Data.Models;
 
 namespace Services.Controllers
 {

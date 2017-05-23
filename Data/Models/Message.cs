@@ -1,19 +1,24 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Models
+namespace Data.Models
 {
-    public class Feedback
+    public class Message
     {
         public int Id { get; set; }
 
-        [Range(1,5)]
-        public int Score { get; set; }
+        [Required]
+        [MinLength(3)]
+        [MaxLength(50)]
+        public string Title { get; set; }
 
         [Required]
-        [MinLength(4)]
-        [MaxLength(200)]
-        public string Comment { get; set; }
+        [MinLength(3)]
+        [MaxLength(1000)]
+        public string Content { get; set; }
+
+        [Required]
+        public bool IsSeen { get; set; }
 
         public DateTime CreateDate { get; set; }
 

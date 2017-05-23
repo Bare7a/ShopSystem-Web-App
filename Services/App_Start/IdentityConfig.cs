@@ -4,8 +4,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Services.Models;
-using Models;
 using Data;
+using Data.Models;
 
 namespace Services
 {

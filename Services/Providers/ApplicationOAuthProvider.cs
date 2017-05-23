@@ -10,7 +10,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Services.Models;
-using Models;
+using Data.Models;
 
 namespace Services.Providers
 {

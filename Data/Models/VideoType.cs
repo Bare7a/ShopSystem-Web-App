@@ -1,4 +1,4 @@
-﻿namespace Models
+﻿namespace Data.Models
 {
     public enum VideoType
     {

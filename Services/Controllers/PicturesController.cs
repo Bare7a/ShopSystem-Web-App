@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
-using Models;
+using Data.Models;
 using Services.Models.BindingModels;
 using System.Linq;
 using System.Web.Http;

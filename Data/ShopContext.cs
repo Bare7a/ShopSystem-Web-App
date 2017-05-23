@@ -2,7 +2,7 @@ namespace Data
 {
     using Data.Migrations;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using Models;
+    using Data.Models;
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;
 
