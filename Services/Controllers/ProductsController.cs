@@ -176,6 +176,11 @@ namespace Services.Controllers
                 return this.BadRequest("Category is not valid!");
             }
 
+            if (model.pictures.Count() == 0)
+            {
+                return this.BadRequest("Product must have atleast 1 picture!");
+            }
+
             ICollection<Picture> pictures = new HashSet<Picture>();
             foreach (var picture in model.pictures)
             {
@@ -213,6 +218,53 @@ namespace Services.Controllers
             this.Data.SaveChanges();
 
             return Ok("Product was successfully added!");
+        }
+
+        [Authorize]
+        [HttpPut]
+        public IHttpActionResult PutProduct(PutProductBindingModel model)
+        {
+            string userId = this.User.Identity.GetUserId();
+
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            if (model == null)
+            {
+                return this.BadRequest("Model cannot be null");
+            }
+
+            var category = this.Data.Categories.FirstOrDefault(c => c.Id == model.CategoryId);
+
+            if (category == null)
+            {
+                return this.BadRequest("Category is not valid!");
+            }
+
+            var product = this.Data.Products.FirstOrDefault(p => p.Id == model.Id);
+
+            if(product == null)
+            {
+                return this.BadRequest("This product does not exist!");
+            }
+
+            if(product.UserId != userId)
+            {
+                return this.Unauthorized();
+            }
+
+            product.Name = model.Name;
+            product.Description = model.Description;
+            product.Price = model.Price;
+            product.Quantity = model.Quantity;
+            product.CategoryId = model.CategoryId;
+            product.Condition = (ConditionType) model.Condition;
+
+            this.Data.SaveChanges();
+
+            return Ok("Product was successfully edited!");
         }
 
         [HttpDelete]

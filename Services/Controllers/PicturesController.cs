@@ -103,6 +103,11 @@ namespace Services.Controllers
                 return this.BadRequest("The picture you are trying to delete is not yours!");
             }
 
+            if (picture.Product.Pictures.Count == 1)
+            {
+                return this.BadRequest("Add atleast one more picture before removing this one!");
+            }
+
             this.Data.Pictures.Remove(picture);
 
             return Ok("The picture was successfully deleted!");

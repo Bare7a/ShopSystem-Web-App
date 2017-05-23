@@ -230,6 +230,7 @@
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CitiesController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\FeedbacksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -246,7 +247,9 @@
     <Compile Include="Models\BindingModels\AddCommentBindingModel.cs" />
     <Compile Include="Models\BindingModels\AddFeedbackBindingModel.cs" />
     <Compile Include="Models\BindingModels\AddMessageBindingModel.cs" />
+    <Compile Include="Models\BindingModels\ProductBindingModel.cs" />
     <Compile Include="Models\BindingModels\PutPictureBindingModel.cs" />
+    <Compile Include="Models\BindingModels\PutProductBindingModel.cs" />
     <Compile Include="Models\BindingModels\PutVideoBindingModel.cs" />
     <Compile Include="Models\BindingModels\ProductPictureBindingModel.cs" />
     <Compile Include="Models\BindingModels\AddProductBindingModel.cs" />
@@ -256,7 +259,9 @@
     <Compile Include="Models\BindingModels\PatchCommentBindingModel.cs" />
     <Compile Include="Models\BindingModels\AddVideoBindingModel.cs" />
     <Compile Include="Models\BindingModels\AddPictureBindingModel.cs" />
+    <Compile Include="Models\ViewModels\CityViewModel.cs" />
     <Compile Include="Models\ViewModels\CommentViewModel.cs" />
+    <Compile Include="Models\ViewModels\FeedbackViewModel.cs" />
     <Compile Include="Models\ViewModels\MessageDetailedViewModel.cs" />
     <Compile Include="Models\ViewModels\MessagesViewModel.cs" />
     <Compile Include="Models\ViewModels\PictureViewModel.cs" />

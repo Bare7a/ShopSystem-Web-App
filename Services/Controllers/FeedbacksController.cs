@@ -4,11 +4,38 @@ using Services.Models.BindingModels;
 using System;
 using System.Linq;
 using System.Web.Http;
+using Services.Models.ViewModels;
 
 namespace Services.Controllers
 {
     public class FeedbacksController : BaseApiController
     {
+        [HttpGet]
+        public IHttpActionResult GetFeedbacks(string id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            var user = this.Data.Users.FirstOrDefault(u => u.UserName == id);
+
+            if(user == null)
+            {
+                return this.BadRequest(String.Format("User with the username \"{0}\" was not found!", id));
+            }
+
+            var feedbacks = user.RecievedFeedbacks.Select(f => new FeedbackViewModel
+            {
+                Username = f.Sender.UserName,
+                Score = f.Score,
+                Comment = f.Comment,
+                CreateDate = f.CreateDate
+            });
+
+            return Ok(feedbacks);
+        }
+
         [HttpPost]
         public IHttpActionResult PostFeedback(AddFeedbackBindingModel model)
         {
