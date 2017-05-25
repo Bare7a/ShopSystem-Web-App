@@ -31,6 +31,16 @@ namespace Services.Controllers
                 products = products.Where(p => p.Description.Contains(model.Description));
             }
 
+            if (model.MinPrice != null)
+            {
+                products = products.Where(p => p.Price > model.MinPrice);
+            }
+
+            if (model.MaxPrice != null)
+            {
+                products = products.Where(p => p.Price < model.MaxPrice);
+            }
+
             if (model.CategoryId.HasValue)
             {
                 products = products.Where(p => p.Category.Id == model.CategoryId);

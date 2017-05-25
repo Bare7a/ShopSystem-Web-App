@@ -22,6 +22,10 @@ namespace Services.Models.BindingModels
 
         public int? CityId { get; set; }
 
+        public int? MinPrice { get; set; }
+
+        public int? MaxPrice { get; set; }
+
         [MinLength(3)]
         [MaxLength(20)]
         public string SortBy { get; set; }
