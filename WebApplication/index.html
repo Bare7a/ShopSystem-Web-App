@@ -1,10 +1,336 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en" ng-app="WebApp">
+
 <head>
-    <meta charset="utf-8" />
-    <title>My Web Application!</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Products</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/styles.css" rel="stylesheet" />
+
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/angular.min.js"></script>
 </head>
+
 <body>
-    <h1>My Web Application!</h1>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">Categories</a>
+                    </li>
+                    <li>
+                        <a href="#">Products</a>
+                    </li>
+                    <li>
+                        <a href="#">Messages</a>
+                    </li>
+                    <li>
+                        <a href="#">Account</a>
+                    </li>
+                </ul>
+                <div class="navbar-right">
+                    <form class="navbar-form" role="search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search" name="q">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <h1 class="page-header">Products</h1>
+            </div>
+
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="thumbnail">
+                        <h4 class="text-center">---     Product {{i}}     ---</a></h4>
+                        <img src="http://placehold.it/320x150" alt="">
+                        <div class="caption">
+                            <h4 class="pull-right">1200 &euro;</h4>
+                            <h4>New</h4>
+                            <p class="pull-right">Quantity: 5</p>
+                            <p><span class="glyphicon glyphicon-tags"> </span> Laptops</p>
+                            <p class="pull-right"><span class="glyphicon glyphicon-user"> </span> MarioT</p>
+                            <p><span class="glyphicon glyphicon-home"> </span> Sofia</p>
+
+                            <p class="pull-right">15 reviews</p>
+                            <p>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="thumbnail">
+                    <h4 class="text-center">---     Product {{i}}     ---</a></h4>
+                    <img src="http://placehold.it/320x150" alt="">
+                    <div class="caption">
+                        <h4 class="pull-right">1200 &euro;</h4>
+                        <h4>New</h4>
+                        <p class="pull-right">Quantity: 5</p>
+                        <p><span class="glyphicon glyphicon-tags"> </span> Laptops</p>
+                        <p class="pull-right"><span class="glyphicon glyphicon-user"> </span> MarioT</p>
+                        <p><span class="glyphicon glyphicon-home"> </span> Sofia</p>
+
+                        <p class="pull-right">15 reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="thumbnail">
+                    <h4 class="text-center">---     Product {{i}}     ---</a></h4>
+                    <img src="http://placehold.it/320x150" alt="">
+                    <div class="caption">
+                        <h4 class="pull-right">1200 &euro;</h4>
+                        <h4>New</h4>
+                        <p class="pull-right">Quantity: 5</p>
+                        <p><span class="glyphicon glyphicon-tags"> </span> Laptops</p>
+                        <p class="pull-right"><span class="glyphicon glyphicon-user"> </span> MarioT</p>
+                        <p><span class="glyphicon glyphicon-home"> </span> Sofia</p>
+
+                        <p class="pull-right">15 reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="thumbnail">
+                    <h4 class="text-center">---     Product {{i}}     ---</a></h4>
+                    <img src="http://placehold.it/320x150" alt="">
+                    <div class="caption">
+                        <h4 class="pull-right">1200 &euro;</h4>
+                        <h4>New</h4>
+                        <p class="pull-right">Quantity: 5</p>
+                        <p><span class="glyphicon glyphicon-tags"> </span> Laptops</p>
+                        <p class="pull-right"><span class="glyphicon glyphicon-user"> </span> MarioT</p>
+                        <p><span class="glyphicon glyphicon-home"> </span> Sofia</p>
+
+                        <p class="pull-right">15 reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="thumbnail">
+                    <h4 class="text-center">---     Product {{i}}     ---</a></h4>
+                    <img src="http://placehold.it/320x150" alt="">
+                    <div class="caption">
+                        <h4 class="pull-right">1200 &euro;</h4>
+                        <h4>New</h4>
+                        <p class="pull-right">Quantity: 5</p>
+                        <p><span class="glyphicon glyphicon-tags"> </span> Laptops</p>
+                        <p class="pull-right"><span class="glyphicon glyphicon-user"> </span> MarioT</p>
+                        <p><span class="glyphicon glyphicon-home"> </span> Sofia</p>
+
+                        <p class="pull-right">15 reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="thumbnail">
+                    <h4 class="text-center">---     Product {{i}}     ---</a></h4>
+                    <img src="http://placehold.it/320x150" alt="">
+                    <div class="caption">
+                        <h4 class="pull-right">1200 &euro;</h4>
+                        <h4>New</h4>
+                        <p class="pull-right">Quantity: 5</p>
+                        <p><span class="glyphicon glyphicon-tags"> </span> Laptops</p>
+                        <p class="pull-right"><span class="glyphicon glyphicon-user"> </span> MarioT</p>
+                        <p><span class="glyphicon glyphicon-home"> </span> Sofia</p>
+
+                        <p class="pull-right">15 reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="thumbnail">
+                    <h4 class="text-center">---     Product {{i}}     ---</a></h4>
+                    <img src="http://placehold.it/320x150" alt="">
+                    <div class="caption">
+                        <h4 class="pull-right">1200 &euro;</h4>
+                        <h4>New</h4>
+                        <p class="pull-right">Quantity: 5</p>
+                        <p><span class="glyphicon glyphicon-tags"> </span> Laptops</p>
+                        <p class="pull-right"><span class="glyphicon glyphicon-user"> </span> MarioT</p>
+                        <p><span class="glyphicon glyphicon-home"> </span> Sofia</p>
+
+                        <p class="pull-right">15 reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="thumbnail">
+                    <h4 class="text-center">---     Product {{i}}     ---</a></h4>
+                    <img src="http://placehold.it/320x150" alt="">
+                    <div class="caption">
+                        <h4 class="pull-right">1200 &euro;</h4>
+                        <h4>New</h4>
+                        <p class="pull-right">Quantity: 5</p>
+                        <p><span class="glyphicon glyphicon-tags"> </span> Laptops</p>
+                        <p class="pull-right"><span class="glyphicon glyphicon-user"> </span> MarioT</p>
+                        <p><span class="glyphicon glyphicon-home"> </span> Sofia</p>
+
+                        <p class="pull-right">15 reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="thumbnail">
+                    <h4 class="text-center">---     Product {{i}}     ---</a></h4>
+                    <img src="http://placehold.it/320x150" alt="">
+                    <div class="caption">
+                        <h4 class="pull-right">1200 &euro;</h4>
+                        <h4>New</h4>
+                        <p class="pull-right">Quantity: 5</p>
+                        <p><span class="glyphicon glyphicon-tags"> </span> Laptops</p>
+                        <p class="pull-right"><span class="glyphicon glyphicon-user"> </span> MarioT</p>
+                        <p><span class="glyphicon glyphicon-home"> </span> Sofia</p>
+
+                        <p class="pull-right">15 reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <nav class="text-center" aria-label="Page navigation">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p>Copyright &copy; <a href="http://github.com/bare7a/ShopSystem-WebApp">Bare7a</a> 2017</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
 </body>
 </html>
