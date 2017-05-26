@@ -99,7 +99,7 @@ namespace Services.Controllers
                 City = p.User.City.Name,
                 Category = p.Category.Name,
                 CreateDate = p.CreateDate,
-                Comments = p.Comments.Count
+                CommentsCount = p.Comments.Count
             }).ToList();
 
             return this.Ok(
@@ -133,6 +133,8 @@ namespace Services.Controllers
                     Feedback = p.User.RecievedFeedbacks.Count == 0 ? 0.0 : p.User.RecievedFeedbacks.Sum(f => f.Score) / p.User.RecievedFeedbacks.Count(),
                     City = p.User.City.Name,
                     Category = p.Category.Name,
+                    CreateDate = p.CreateDate,
+                    CommentsCount = p.Comments.Count,
                     Pictures = p.Pictures.Select(pi => new PictureViewModel 
                     {
                         Id = pi.Id,
@@ -150,8 +152,7 @@ namespace Services.Controllers
                         Content = c.Content,
                         CreateDate = c.CreateDate,
                         Username = c.User.UserName
-                    }),
-                    CreateDate = p.CreateDate
+                    })
                    })
                 .FirstOrDefault(p => p.Id == id);
            

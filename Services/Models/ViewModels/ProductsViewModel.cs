@@ -26,8 +26,8 @@ namespace Services.Models.ViewModels
 
         public string Category { get; set; }
 
-        public int Comments { get; set; }
-
         public DateTime CreateDate { get; set; }
+
+        public int CommentsCount { get; set; }
     }
 }
