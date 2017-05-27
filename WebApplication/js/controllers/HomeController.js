@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 app.controller('HomeController',
-    function ($scope, productsService, notifyService, pageSize) {
+    function ($scope, productsService,  notifyService, pageSize) {
         $scope.productsParams = {
             'startPage': 1,
             'pageSize': pageSize

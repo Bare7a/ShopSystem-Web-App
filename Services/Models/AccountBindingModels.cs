@@ -55,6 +55,10 @@ namespace Services.Models
         [Required]
         public int CityId { get; set; }
 
+        [MinLength(100)]
+        [MaxLength(500000)]
+        public string ProfilePicture { get; set; }
+
         [MinLength(3)]
         [MaxLength(60)]
         public string Facebook { get; set; }
@@ -62,6 +66,10 @@ namespace Services.Models
         [MinLength(3)]
         [MaxLength(60)]
         public string Skype { get; set; }
+
+        [MinLength(4)]
+        [MaxLength(20)]
+        public string PhoneNumber { get; set; }
     }
 
     public class RegisterExternalBindingModel

@@ -3,28 +3,44 @@
 app.factory('authService',
     function ($http, baseServiceUrl) {
         return {
-            login: function(userData, success, error) {
+            login: function (userData, success, error) {
+                var loginData = 'Username=' + userData.username +
+                    '&Password=' + userData.password +
+                    '&grant_type=password';
+
                 var request = {
                     method: 'POST',
                     url: baseServiceUrl + '/Token',
-                    data: userData
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    data: loginData
                 };
-                $http(request).success(function(data) {
-                    sessionStorage['currentUser'] = JSON.stringify(data);
-                    success(data);
-                }).error(error);
+                $http(request).then(function (response) {
+                    sessionStorage['currentUser'] = JSON.stringify(response['data']);
+                    success(response['data']);
+                }, error(error));
             },
 
             register: function(userData, success, error) {
+                var registerData = 'Username=' + userData.username +
+                    '&Password=' + userData.password +
+                    '&ConfirmPassword=' + userData.confirmPassword +
+                    '&Email=' + userData.email +
+                    '&CityId=' + userData.cityId +
+                    '&ProfilePicture=' + userData.profilePicture +
+                    '&Facebook=' + userData.facebook +
+                    '&Skype=' + userData.skype +
+                    '&PhoneNumber=' + userData.phoneNumber;
+
                 var request = {
                     method: 'POST',
                     url: baseServiceUrl + '/api/Account/Register',
-                    data: userData
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    data: registerData
                 };
-                $http(request).success(function(data) {
-                    sessionStorage['currentUser'] = JSON.stringify(data);
-                    success(data);
-                }).error(error)
+                $http(request).then(function (response) {
+                    sessionStorage['currentUser'] = JSON.stringify(response['data']);
+                    success(response['data']);
+                }, error(error));
             },
 
             logout: function() {

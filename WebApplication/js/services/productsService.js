@@ -21,7 +21,11 @@ app.factory('productsService',
 app.factory('citiesService',
     function ($resource, baseServiceUrl) {
         var citiesResource = $resource(
-            baseServiceUrl + '/api/Cities'
+            baseServiceUrl + '/api/Cities',
+            null,
+            {
+                'getAll': {method: 'GET'}
+            }
         );
 
         return {

@@ -9,7 +9,7 @@ namespace Services.Controllers
     public class CitiesController : BaseApiController
     {
         [HttpGet]
-        public IEnumerable<CityViewModel> GetCities()
+        public IHttpActionResult GetCities()
         {
             var cities = this.Data.Cities
                 .Select(c => new CityViewModel
@@ -18,7 +18,7 @@ namespace Services.Controllers
                     Name = c.Name
                 }).OrderBy(c => c.Id);
 
-            return cities;
+            return this.Ok(cities);
         }
 
         public IHttpActionResult GetCityById(int id)

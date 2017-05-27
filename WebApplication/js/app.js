@@ -1,9 +1,9 @@
-﻿var app = angular.module("WebApp", ['ngRoute','ngResource','ui.bootstrap']);
+﻿var app = angular.module("WebApp", ['ngRoute', 'ngResource', 'ui.bootstrap']);
 
 app.constant('baseServiceUrl', 'http://localhost:11184');
 app.constant('pageSize', 4);
 
-app.config(function ($routeProvider) {
+app.config(function ($routeProvider, $locationProvider) {
 
     $routeProvider.when('/', {
         templateUrl: 'templates/home.html',
@@ -12,18 +12,19 @@ app.config(function ($routeProvider) {
 
     $routeProvider.when('/login', {
         templateUrl: 'templates/login.html',
-        controller: 'LoginController'
+        controller: 'AuthController'
     });
-
-    $routeProvider.when('/register', {
-        templateUrl: 'templates/register.html',
-        controller: 'RegisterController'
-    });
-
 
     $routeProvider.otherwise(
         { redirectTo: '/' }
     );
+
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+    });
+
+    $locationProvider.html5Mode(true);
 });
 
 app.run(function ($rootScope, $location, authService) {

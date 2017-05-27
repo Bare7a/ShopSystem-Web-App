@@ -1,4 +1,37 @@
 ﻿body 
 {
-    padding-top: 20px;
+    padding-top: 70px;
+}
+
+.height-fix
+{
+    top: 200px;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+    .inputfile:focus + label {
+        outline: 1px dotted #000;
+        outline: -webkit-focus-ring-color auto 5px;
+    }
+
+    .inputfile + label * {
+        pointer-events: none;
+    }
+
+.image-box
+{
+    max-width: 150px;
+}
+
+.shadow-effect 
+{
+    box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
 }

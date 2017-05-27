@@ -329,7 +329,7 @@ namespace Services.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new User() { UserName = model.Username, Email = model.Email, CityId = model.CityId, RegisterDate = DateTime.Now };
+            var user = new User() { UserName = model.Username, Email = model.Email, CityId = model.CityId, ProfilePicture = model.ProfilePicture , RegisterDate = DateTime.Now, Facebook = model.Facebook, Skype = model.Skype, PhoneNumber = model.PhoneNumber };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
