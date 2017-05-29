@@ -51,7 +51,7 @@
 
 </div>
 
-<div class="row">
+<div ng-if="product.Videos.length != 0" class="row">
     <div class="col-sm-12">
         <div class="panel panel-default shadow-effect">
             <div class="panel-heading">
@@ -68,25 +68,26 @@
     </div>
 </div>
 
-<div class="col-sm-12">
+<div ng-if="authService.isLoggedIn()" class="col-sm-12">
     <div class="panel panel-default">
         <div class="panel-heading">
             <strong>Post a comment</strong>
         </div>
         <div class="panel-body">
-            <textarea class="form-control"></textarea>
+            <textarea id="comment" ng-model="commentData.Content" required="required"></textarea>
+            <a ng-click="addComment(commentData)" class="btn btn-info">Publish</a>
         </div>
     </div>
 </div>
 
 
-<div class="col-sm-12" ng-repeat="comment in product.Comments">
+<div class="col-xm-12 col-md-6" ng-repeat="comment in product.Comments">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <strong>{{comment.UserName}}</strong> <span class="text-muted">{{comment.CreateDate}}</span>
+            <strong>{{comment.Username}}</strong> <span class="text-muted">{{comment.CreateDate}}</span>
         </div>
         <div class="panel-body">
-            {{comment.Description}}
+            {{comment.Content}}
         </div>
     </div>
 </div>

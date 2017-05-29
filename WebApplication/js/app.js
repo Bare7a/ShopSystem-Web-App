@@ -8,7 +8,7 @@
 app.constant('baseServiceUrl', 'http://localhost:11184');
 app.constant('pageSize', 4);
 
-app.config(function ($routeProvider, $locationProvider) {
+app.config(function ($routeProvider, $locationProvider, $httpProvider) {
 
     $routeProvider.when('/', {
         templateUrl: 'templates/home.html',
@@ -38,6 +38,8 @@ app.config(function ($routeProvider, $locationProvider) {
         enabled: true,
         requireBase: false
     });
+
+    $httpProvider.defaults.headers.post["Content-Type"] = "text/plain";
 
     $locationProvider.html5Mode(true);
 });

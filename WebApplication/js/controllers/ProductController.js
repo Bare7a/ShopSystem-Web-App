@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 app.controller('ProductController',
-    function ($scope, productsService, notifyService, $routeParams) {
+    function ($scope, userService, productsService, notifyService, $routeParams) {
         $scope.product = function () {
             productsService.getProductById(
                 $routeParams.id,
@@ -10,6 +10,18 @@ app.controller('ProductController',
                 },
                 function error(response) {
                     notifyService.showError("Cannot load product", response['data']);
+                }
+            );
+        };
+
+
+        $scope.addComment = function (commentData) {
+            userService.createNewComment($routeParams.id, commentData,
+                function success() {
+                    notifyService.showInfo("Comment successfully added!");
+                },
+                function error(err) {
+                    notifyService.showError("Failed to add a comment.", err);
                 }
             );
         };
