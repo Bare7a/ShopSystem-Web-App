@@ -1,6 +1,12 @@
 ﻿body 
 {
     padding-top: 70px;
+    background-image: url('background.png');
+}
+
+a 
+{
+    text-decoration: none;
 }
 
 .height-fix
@@ -26,12 +32,28 @@
         pointer-events: none;
     }
 
-.image-box
-{
-    max-width: 150px;
-}
 
 .shadow-effect 
 {
     box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+h4 {
+    margin-top: 0;
+}
+
+.comments-list .media {
+    border-bottom: 1px dotted #ccc;
 }

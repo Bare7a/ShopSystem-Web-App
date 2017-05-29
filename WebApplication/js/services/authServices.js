@@ -17,7 +17,9 @@ app.factory('authService',
                 $http(request).then(function (response) {
                     sessionStorage['currentUser'] = JSON.stringify(response['data']);
                     success(response['data']);
-                }, error(error));
+                }, function (response) {
+                    error(response['data']);
+                });
             },
 
             register: function(userData, success, error) {
@@ -38,13 +40,14 @@ app.factory('authService',
                     data: registerData
                 };
                 $http(request).then(function (response) {
-                    sessionStorage['currentUser'] = JSON.stringify(response['data']);
                     success(response['data']);
-                }, error(error));
+                }, function (response) {
+                    error(response['data']);
+                });
             },
 
             logout: function() {
-                delete sessionStorage['currentUser'];
+                sessionStorage.removeItem('currentUser');
             },
 
             getCurrentUser : function() {
@@ -54,11 +57,11 @@ app.factory('authService',
                 }
             },
 
-            isAnonymous : function() {
+            isAnonymous: function () {
                 return sessionStorage['currentUser'] == undefined;
             },
 
-            isLoggedIn : function() {
+            isLoggedIn: function () {
                 return sessionStorage['currentUser'] != undefined;
             },
 

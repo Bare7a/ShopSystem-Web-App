@@ -1,18 +1,25 @@
 ﻿'use strict';
 
 app.factory('productsService',
-    function ($resource, baseServiceUrl) {
-        var productsResource = $resource(
-            baseServiceUrl + '/api/Products',
-            null,
-            {
-                'getAll': {method:'GET'}
-            }
-        );
-
+    function ($http, baseServiceUrl) {
         return {
-            getProducts: function(params, success, error) {
-                return productsResource.getAll(params, success, error);
+            getAllProducts: function (params, success, error) {
+                var request = {
+                    method: 'GET',
+                    url: baseServiceUrl + '/api/Products',
+                    params: params
+                };
+
+                $http(request).then(success,error);
+            },
+
+            getProductById: function (id, success, error) {
+                var request = {
+                    method: 'GET',
+                    url: baseServiceUrl + '/api/Products/' + id,
+                };
+
+                $http(request).then(success, error);
             }
         }
     }
@@ -24,12 +31,12 @@ app.factory('citiesService',
             baseServiceUrl + '/api/Cities',
             null,
             {
-                'getAll': {method: 'GET'}
+                'getAll': { method: 'GET' }
             }
         );
 
         return {
-            getCities: function(success, error) {
+            getCities: function (success, error) {
                 return citiesResource.query(success, error);
             }
         };
@@ -43,7 +50,7 @@ app.factory('categoriesService',
         );
 
         return {
-            getCategories: function(success, error) {
+            getCategories: function (success, error) {
                 return categoriesResource.query(success, error);
             }
         };

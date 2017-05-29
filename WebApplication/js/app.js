@@ -1,4 +1,9 @@
-﻿var app = angular.module("WebApp", ['ngRoute', 'ngResource', 'ui.bootstrap']);
+﻿var app = angular.module("WebApp", ['ngRoute', 'ngResource', 'ui.bootstrap'])
+    .filter('trustAsResourceUrl', ['$sce', function ($sce) {
+        return function (val) {
+            return $sce.trustAsResourceUrl(val);
+        };
+    }]);
 
 app.constant('baseServiceUrl', 'http://localhost:11184');
 app.constant('pageSize', 4);
@@ -8,6 +13,16 @@ app.config(function ($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
         templateUrl: 'templates/home.html',
         controller: 'HomeController'
+    });
+
+    $routeProvider.when('/products', {
+        templateUrl: 'templates/home.html',
+        controller: 'HomeController'
+    });
+
+    $routeProvider.when('/product/:id', {
+        templateUrl: 'templates/product.html',
+        controller: 'ProductController'
     });
 
     $routeProvider.when('/login', {

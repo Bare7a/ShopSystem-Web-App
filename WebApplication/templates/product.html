@@ -1,0 +1,94 @@
+﻿<div class="row">
+    <div class="col-sm-9">
+        <div class="panel panel-default shadow-effect">
+            <div class="panel-heading">
+                <h1 class="panel-title">Category: {{product.Category}}</h1>
+            </div>
+            <div class="panel-body">
+                <h1 class="text-center">{{product.Name}}</h1>
+                <h4 class="col-sm-3 col-xs-6"> <span class="fa fa-shopping-cart"> </span> {{product.Price}} &euro;</h4>
+                <h4 class="col-sm-3 col-xs-6"> <span class="fa fa-tags"> </span> {{product.Condition}}</h4>
+                <h4 class="col-sm-3 col-xs-6"> <span class="fa fa-plus-circle"> </span> {{product.Quantity}}</h4>
+                <h4 class="col-sm-3 col-xs-6"> <span class="fa fa-calendar"> </span> {{product.CreateDate | date:'dd.MM.yyyy'}}</h4>
+            </div>
+            <div class="panel-heading">
+                <h1 class="panel-title">Description</h1>
+            </div>
+            <div class="panel-body">
+                <h4>{{product.Description}}</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="panel panel-default shadow-effect">
+            <div class="panel-heading">
+                <h1 class="panel-title">Submiter</h1>
+            </div>
+            <div class="panel-body">
+                <h4><span class="fa fa-user"> </span> <a href="/user/{{product.Submiter.Username}}">{{product.Submiter.Username}}</a></h4>
+                <h4><span class="fa fa-home"> </span> {{product.Submiter.City}}</h4>
+                <h4 ng-if="product.Submiter.Facebook"><span class="fa fa-facebook"> </span> <a href="{{product.Submiter.Facebook}}">Facebook</a></h4>
+                <h4 ng-if="product.Submiter.Skype"><span class="fa fa-skype"> </span> <a href="skype:{{product.Submiter.Skype}}?chat"> {{product.Submiter.Skype}}</a></h4>
+                <h4 ng-if="product.Submiter.Phone"><span class="fa fa-phone"> </span> {{product.Submiter.PhoneNumber}}</h4>
+                <h4><span class="fa fa-star"> </span> {{product.Submiter.Feedback}} / 5</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default shadow-effect">
+            <div class="panel-heading">
+                <h3 class="panel-title">Pictures</h3>
+            </div>
+            <div class="panel-body">
+                <p class="col-sm-3 col-xs-6" ng-repeat="picture in product.Pictures"><img class="img-responsive" src="{{picture.Image}}" /></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default shadow-effect">
+            <div class="panel-heading">
+                <h3 class="panel-title">Videos</h3>
+            </div>
+            <div class="panel-body">
+                <div ng-repeat="video in product.Videos">
+                    <iframe class="col-sm-4 col-md-3 embed-responsive-item" ng-if="video.VideoType == 'YouTube'" ng-src="{{'https://www.youtube.com/embed/' + video.UrlAddress | trustAsResourceUrl}}" allowfullscreen frameborder="0"></iframe>
+                    <iframe class="col-sm-4 col-md-3 embed-responsive-item" ng-if="video.VideoType == 'Vbox7'" ng-src="{{'https://www.vbox7.com/emb/external.php?vid=' + video.UrlAddress | trustAsResourceUrl}}" allowfullscreen frameborder="0"></iframe>
+                    <iframe class="col-sm-4 col-md-3 embed-responsive-item" ng-if="video.VideoType == 'Vimeo'" ng-src="{{'https://player.vimeo.com/video/' + video.UrlAddress | trustAsResourceUrl}}" allowfullscreen frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong>Post a comment</strong>
+        </div>
+        <div class="panel-body">
+            <textarea class="form-control"></textarea>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-sm-12" ng-repeat="comment in product.Comments">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong>{{comment.UserName}}</strong> <span class="text-muted">{{comment.CreateDate}}</span>
+        </div>
+        <div class="panel-body">
+            {{comment.Description}}
+        </div>
+    </div>
+</div>
+
+{{product.Videos}}

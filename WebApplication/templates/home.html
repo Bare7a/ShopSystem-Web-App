@@ -1,22 +1,25 @@
 ﻿<div class="row">
     <div class="col-sm-6 col-md-4 col-lg-3" ng-repeat="product in products.products">
-        <div class="thumbnail">
-            <h4 class="text-center"> {{product.Name}}</a></h4>
-            <img src="http://placehold.it/320x150" alt="">
-            <div class="caption">
-                <h4 class="pull-right">1200 &euro;</h4>
-                <h4>{{product.Condition}}</h4>
-                <p class="pull-right">Left: {{product.Quantity}}</p>
-                <p><span class="glyphicon glyphicon-tags"> </span> {{product.Category}}</p>
-                <p class="pull-right"><span class="glyphicon glyphicon-user"> </span> {{product.Submiter}}</p>
-                <p><span class="glyphicon glyphicon-home"> </span> {{product.City}}</p>
+        <a href="/product/{{product.Id}}">
+            <div class="panel panel-default shadow-effect">
+                <div class="panel-heading">
+                    <h1 class="panel-title text-center">{{product.Name}}</h1>
+                </div>
+                <div class="panel-body">
+                    <p><img class="img-responsive" src="{{product.Picture}}" alt=""></p>
 
-                <p class="pull-right"><span class="glyphicon glyphicon-star"> </span> {{product.Feedback}} / 5</p>
-                <p>
-                    <span class="glyphicon glyphicon-calendar"></span> {{product.CreateDate | date:'dd.MM.yyyy'}}
-                </p>
+                    <h4 class="pull-right"><span class="fa fa-shopping-cart"> </span> {{product.Price}} &euro;</h4>
+                    <h4>{{product.Condition}}</h4>
+                    <p class="pull-right"><span class="fa fa-plus"> </span> {{product.Quantity}}</p>
+                    <p><span class="fa fa-tags"> </span> {{product.Category}}</p>
+                    <p class="pull-right"><span class="fa fa-user"> </span> {{product.Submiter}}</p>
+                    <p><span class="fa fa-home"> </span> {{product.City}}</p>
+
+                    <p class="pull-right"><span class="fa fa-star"> </span> {{product.Feedback}} / 5</p>
+                    <p><span class="fa fa-calendar"></span> {{product.CreateDate | date:'dd.MM.yyyy'}}</p>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
 </div>
 
