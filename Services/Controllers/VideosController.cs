@@ -3,6 +3,7 @@ using Data.Models;
 using Services.Models.BindingModels;
 using System.Linq;
 using System.Web.Http;
+using System.Text.RegularExpressions;
 
 namespace Services.Controllers
 {
@@ -35,11 +36,41 @@ namespace Services.Controllers
                 return this.Unauthorized();
             }
 
+            Regex vbox7Regex = new Regex(@"play:([\d\w]*)");
+            Regex vimeoRegex = new Regex(@"vimeo.com\/([\d]*)");
+            Regex youtubeRegex = new Regex(@"watch\?v=([\d\w-_]*)");
+
+
+            string urlAddress = "";
+            Match match;
+
+            if (model.VideoType == (int)VideoType.Vbox7)
+            {
+                match = vbox7Regex.Match(model.UrlAddress);
+                urlAddress = match.Groups[1].Value;
+            }
+            else if (model.VideoType == (int)VideoType.Vimeo)
+            {
+                match = vimeoRegex.Match(model.UrlAddress);
+                urlAddress = match.Groups[1].Value;
+            }
+            else if (model.VideoType == (int)VideoType.YouTube)
+            {
+                match = youtubeRegex.Match(model.UrlAddress);
+                urlAddress = match.Groups[1].Value;
+            }
+
+            if (urlAddress == "")
+            {
+                return BadRequest("The video was not valid!");
+            }
+
+
             var video = new Video
             {
                 ProductId = model.ProductId,
-                UrlAddress = model.UrlAddress,
-                VideoType = (VideoType) model.VideoType
+                UrlAddress = urlAddress,
+                VideoType = (VideoType)model.VideoType
             };
 
             this.Data.Videos.Add(video);
@@ -75,8 +106,37 @@ namespace Services.Controllers
                 return this.BadRequest("The video you are trying to modify is not yours!");
             }
 
-            video.UrlAddress = model.UrlAddress;
-            video.VideoType = (VideoType) model.VideoType;
+            Regex vbox7Regex = new Regex(@"play:([\d\w]*)");
+            Regex vimeoRegex = new Regex(@"vimeo.com\/([\d]*)");
+            Regex youtubeRegex = new Regex(@"watch\?v=([\d\w-_]*)");
+
+
+            string urlAddress = "";
+            Match match;
+
+            if (model.VideoType == (int)VideoType.Vbox7)
+            {
+                match = vbox7Regex.Match(model.UrlAddress);
+                urlAddress = match.Groups[1].Value;
+            }
+            else if (model.VideoType == (int)VideoType.Vimeo)
+            {
+                match = vimeoRegex.Match(model.UrlAddress);
+                urlAddress = match.Groups[1].Value;
+            }
+            else if (model.VideoType == (int)VideoType.YouTube)
+            {
+                match = youtubeRegex.Match(model.UrlAddress);
+                urlAddress = match.Groups[1].Value;
+            }
+
+            if (urlAddress == "")
+            {
+                return BadRequest("The video was not valid!");
+            }
+
+            video.UrlAddress = urlAddress;
+            video.VideoType = (VideoType)model.VideoType;
 
             this.Data.SaveChanges();
 

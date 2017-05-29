@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Data.Models;
 using Services.Models.BindingModels;
 using Services.Models.ViewModels;
+using System.Text.RegularExpressions;
 
 namespace Services.Controllers
 {
@@ -85,7 +86,7 @@ namespace Services.Controllers
             }
             products = products.Take(pageSize);
 
-            var productsToReturn = products.Select(p => new ProductsViewModel
+            var productsToReturn = products.Select(p => new ProductsListViewModel
             {
                 Id = p.Id,
                 Name = p.Name,
@@ -98,8 +99,7 @@ namespace Services.Controllers
                 Feedback = p.User.RecievedFeedbacks.Count == 0 ? 0.0 : p.User.RecievedFeedbacks.Sum(f => f.Score) / p.User.RecievedFeedbacks.Count(),
                 City = p.User.City.Name,
                 Category = p.Category.Name,
-                CreateDate = p.CreateDate,
-                CommentsCount = p.Comments.Count
+                CreateDate = p.CreateDate
             }).ToList();
 
             return this.Ok(
@@ -129,12 +129,18 @@ namespace Services.Controllers
                     Condition = (p.Condition).ToString(),
                     Quantity = p.Quantity,
                     Description = p.Description,
-                    Submiter = p.User.UserName,
-                    Feedback = p.User.RecievedFeedbacks.Count == 0 ? 0.0 : p.User.RecievedFeedbacks.Sum(f => f.Score) / p.User.RecievedFeedbacks.Count(),
-                    City = p.User.City.Name,
+                    
                     Category = p.Category.Name,
                     CreateDate = p.CreateDate,
-                    CommentsCount = p.Comments.Count,
+                    Submiter = new SubmiterViewModel
+                    {
+                        Username = p.User.UserName,
+                        Feedback = p.User.RecievedFeedbacks.Count == 0 ? 0.0 : p.User.RecievedFeedbacks.Sum(f => f.Score) / p.User.RecievedFeedbacks.Count(),
+                        City = p.User.City.Name,
+                        Facebook = p.User.Facebook,
+                        PhoneNumber = p.User.PhoneNumber,
+                        Skype = p.User.Skype
+                    },
                     Pictures = p.Pictures.Select(pi => new PictureViewModel 
                     {
                         Id = pi.Id,
@@ -201,14 +207,40 @@ namespace Services.Controllers
                 });
             }
 
+            Regex vbox7Regex = new Regex(@"play:([\d\w]*)");
+            Regex vimeoRegex = new Regex(@"vimeo.com\/([\d]*)");
+            Regex youtubeRegex = new Regex(@"watch\?v=([\d\w-_]*)");
+
             ICollection<Video> videos = new HashSet<Video>();
             foreach (var video in model.videos)
             {
-                videos.Add(new Video
+                string urlAddress = "";
+                Match match;
+
+                if(video.VideoType == (int) VideoType.Vbox7)
                 {
-                    UrlAddress = video.UrlAddress,
-                    VideoType = (VideoType) video.VideoType
-                });
+                    match = vbox7Regex.Match(video.UrlAddress);
+                    urlAddress = match.Groups[1].Value;
+                }
+                else if (video.VideoType == (int)VideoType.Vimeo)
+                {
+                    match = vimeoRegex.Match(video.UrlAddress);
+                    urlAddress = match.Groups[1].Value;
+                }
+                else if (video.VideoType == (int)VideoType.YouTube)
+                {
+                    match = youtubeRegex.Match(video.UrlAddress);
+                    urlAddress = match.Groups[1].Value;
+                }
+
+                if (urlAddress != "")
+                {
+                    videos.Add(new Video
+                    {
+                        UrlAddress = urlAddress,
+                        VideoType = (VideoType)video.VideoType
+                    });
+                }
             }
 
             var product = new Product

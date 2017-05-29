@@ -55,7 +55,6 @@ namespace Services.Models
         [Required]
         public int CityId { get; set; }
 
-        [MinLength(100)]
         [MaxLength(500000)]
         public string ProfilePicture { get; set; }
 

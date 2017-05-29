@@ -14,7 +14,6 @@ namespace Services.Controllers
             {
                 Id = c.Id,
                 Name = c.Name,
-                Image = c.Image
             });
 
             return Ok(categories);

@@ -19,9 +19,6 @@ namespace Data.Models
         [MaxLength(50)]
         public string Name { get; set; }
 
-        [Required]
-        public string Image { get; set; }
-
         public virtual ICollection<Product> Products
         {
             get { return this.products; }

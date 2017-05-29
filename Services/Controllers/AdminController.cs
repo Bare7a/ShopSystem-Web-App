@@ -22,7 +22,6 @@ namespace Services.Controllers
 
             Category category = new Category()
             {
-                Image = model.Image,
                 Name = model.Name
             };
 
