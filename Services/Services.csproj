@@ -247,6 +247,7 @@
     <Compile Include="Models\BindingModels\AddCommentBindingModel.cs" />
     <Compile Include="Models\BindingModels\AddFeedbackBindingModel.cs" />
     <Compile Include="Models\BindingModels\AddMessageBindingModel.cs" />
+    <Compile Include="Models\BindingModels\GetUserProductsBindingModel.cs" />
     <Compile Include="Models\BindingModels\ProductBindingModel.cs" />
     <Compile Include="Models\BindingModels\PutPictureBindingModel.cs" />
     <Compile Include="Models\BindingModels\PutProductBindingModel.cs" />

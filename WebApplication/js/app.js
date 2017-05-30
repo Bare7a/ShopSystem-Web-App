@@ -11,13 +11,13 @@ app.constant('pageSize', 4);
 app.config(function ($routeProvider, $locationProvider, $httpProvider) {
 
     $routeProvider.when('/', {
-        templateUrl: 'templates/home.html',
+        templateUrl: 'templates/products.html',
         controller: 'HomeController'
     });
 
     $routeProvider.when('/products', {
-        templateUrl: 'templates/home.html',
-        controller: 'HomeController'
+        templateUrl: 'templates/user-products.html',
+        controller: 'UserProductsController'
     });
 
     $routeProvider.when('/product/:id', {
@@ -30,6 +30,11 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider) {
         controller: 'AuthController'
     });
 
+    $routeProvider.when('/messages', {
+        templateUrl: 'templates/messages.html',
+        controller: 'MessagesController'
+    });
+
     $routeProvider.otherwise(
         { redirectTo: '/' }
     );
@@ -39,8 +44,8 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider) {
         requireBase: false
     });
 
-    $httpProvider.defaults.headers.post["Content-Type"] = "text/plain";
-
+    //$httpProvider.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
+    
     $locationProvider.html5Mode(true);
 });
 

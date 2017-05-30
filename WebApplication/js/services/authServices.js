@@ -83,8 +83,6 @@ app.factory('authService',
                     headers['Authorization'] = 'Bearer ' + currentUser.access_token;
                 }
 
-                headers['Content-Type'] = 'application/json';
-
                 return headers;
             }
         }

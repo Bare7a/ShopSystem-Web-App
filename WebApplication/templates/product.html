@@ -68,28 +68,32 @@
     </div>
 </div>
 
-<div ng-if="authService.isLoggedIn()" class="col-sm-12">
+<div class="col-xm-12 col-md-8 col-md-offset-2">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <strong>Post a comment</strong>
+            <strong>Comments</strong>
         </div>
-        <div class="panel-body">
-            <textarea id="comment" ng-model="commentData.Content" required="required"></textarea>
-            <a ng-click="addComment(commentData)" class="btn btn-info">Publish</a>
+
+
+        <div class="panel-body" ng-if="authService.isLoggedIn()">
+            <h3>Post a comment</h3>
+            <textarea class="form-control" id="comment" ng-model="commentData.Content" required="required"></textarea>
+            <a ng-click="addComment(commentData)" class="btn btn-success btn-block">Publish</a>
+        </div>
+
+        <hr />
+
+        <div class="panel-body" ng-repeat="comment in product.Comments">
+            <div class="comments-list">
+                <div class="media">
+                    <p class="pull-right"><small>{{comment.CreateDate | date:'dd-MM-yyyy HH:mm'}}</small></p>
+                    <div class="media-body">
+
+                        <h4 class="media-heading user_name">{{comment.Username}}</h4>
+                        <p>{{comment.Content}}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
-
-<div class="col-xm-12 col-md-6" ng-repeat="comment in product.Comments">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <strong>{{comment.Username}}</strong> <span class="text-muted">{{comment.CreateDate}}</span>
-        </div>
-        <div class="panel-body">
-            {{comment.Content}}
-        </div>
-    </div>
-</div>
-
-{{product.Videos}}

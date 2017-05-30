@@ -2,6 +2,7 @@
 
 app.controller('ProductController',
     function ($scope, userService, productsService, notifyService, $routeParams) {
+
         $scope.product = function () {
             productsService.getProductById(
                 $routeParams.id,
@@ -16,7 +17,7 @@ app.controller('ProductController',
 
 
         $scope.addComment = function (commentData) {
-            userService.createNewComment($routeParams.id, commentData,
+            userService.createComment($routeParams.id, commentData,
                 function success() {
                     notifyService.showInfo("Comment successfully added!");
                 },

@@ -1,0 +1,46 @@
+﻿<div class="container">
+
+
+    <div class="col-md-2 col-sm-3">
+        <div class="panel panel-default shadow-effect">
+            <div class="panel-heading">
+                <h1 class="panel-title">Sort Type</h1>
+            </div>
+            <div class="panel-body">
+                <h4>All</h4>
+                <h4>Sent</h4>
+                <h4>Recieved</h4>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row col-md-10 col-sm-9 custyle">
+        <table class="table table-striped custab">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Sender</th>
+                    <th>Addressee</th>
+                    <th>Sent Date</th>
+                </tr>
+            </thead>
+            <tr ng-repeat="message in messages.messages">
+                <td>{{message.Title}}</td>
+                <td>{{message.SenderUsername}}</td>
+                <td>{{message.AddresseeUsername}}</td>
+                <td>{{message.CreateDate | date:'dd-MM-yyyy HH:mm'}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div ng-if="messages.messages.length==0" class="box no-data">
+    No messages.
+</div>
+
+<div class="text-center">
+    <ul uib-pagination total-items="messages.messagesCount" ng-model="messagesParams.startPage" items-per-page="messagesParams.pageSize"
+        max-size="8" class="pagination-sm" boundary-link-numbers="true" ng-change="reloadMessages()" previous-text="&laquo;" next-text="&raquo;"></ul>
+</div>

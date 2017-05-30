@@ -1,4 +1,6 @@
 ﻿using Data;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 
 namespace Services.Controllers
@@ -12,6 +14,11 @@ namespace Services.Controllers
         public BaseApiController(ShopContext data)
         {
             this.Data = data;
+        }
+
+        public HttpResponseMessage Options()
+        {
+            return new HttpResponseMessage { StatusCode = HttpStatusCode.OK };
         }
 
         public ShopContext Data { get; set; }

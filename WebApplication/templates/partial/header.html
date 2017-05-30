@@ -13,11 +13,14 @@
                 <li>
                     <a href="/">Home</a>
                 </li>
-                <li>
-                    <a href="/products">Products</a>
-                </li> 
+                <li ng-if="authService.isLoggedIn()">
+                    <a href="/products">My Products</a>
+                </li>
                 <li ng-if="authService.isAnonymous()">
                     <a href="/login">Login</a>
+                </li>
+                <li ng-if="authService.isLoggedIn()">
+                    <a href="/messages">Messages</a>
                 </li>
                 <li ng-if="authService.isLoggedIn()">
                     <a ng-click="logout()" class="link">Logout</a>

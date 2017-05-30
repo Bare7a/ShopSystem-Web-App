@@ -1,0 +1,33 @@
+﻿<div class="container">
+    <div class="row sm-12 custyle">
+        <table class="table table-striped custab">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Condition</th>
+                    <th>Category</th>
+                    <th>Create Date</th>
+                </tr>
+            </thead>
+            <tr ng-repeat="product in userProducts.products">
+                <td>{{product.Name}}</td>
+                <td>{{product.Price}}</td>
+                <td>{{product.Quantity}}</td>
+                <td>{{product.Condition}}</td>
+                <td>{{product.Category}}</td>
+                <td>{{product.CreateDate | date:'dd-MM-yyyy HH:mm'}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div ng-if="userProduct.products.length==0" class="box no-data">
+    No messages.
+</div>
+
+<div class="text-center">
+    <ul uib-pagination total-items="userProducts.productsCount" ng-model="userProductsParams.startPage" items-per-page="userProductsParams.pageSize"
+        max-size="8" class="pagination-sm" boundary-link-numbers="true" ng-change="reloadUserProducts()" previous-text="&laquo;" next-text="&raquo;"></ul>
+</div>

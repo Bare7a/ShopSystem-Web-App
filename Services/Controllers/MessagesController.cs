@@ -8,7 +8,6 @@ using System.Web.Http;
 
 namespace Services.Controllers
 {
-    [Authorize]
     public class MessagesController : BaseApiController
     {
         [HttpGet]

@@ -13,6 +13,56 @@ namespace Services.Controllers
     public class ProductsController : BaseApiController
     {
         [HttpGet]
+        [Route("api/UserProducts")]
+        public IHttpActionResult GetUserProducts([FromUri]GetUserProductsBindingModel model)
+        {
+            string userId = this.User.Identity.GetUserId();
+
+            if (!ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            var products = this.Data.Products.Where(p => p.UserId == userId).AsQueryable();
+            products = products.OrderByDescending(p => p.CreateDate).ThenBy(p => p.Id);
+
+            int pageSize = 10;
+            if (model.PageSize.HasValue)
+            {
+                pageSize = model.PageSize.Value;
+            }
+
+            int productsCount = products.Count();
+            int numPages = (productsCount + pageSize - 1) / pageSize;
+
+            if (model.StartPage.HasValue)
+            {
+                products = products.Skip(pageSize * (model.StartPage.Value - 1));
+            }
+            products = products.Take(pageSize);
+
+            var productsToReturn = products.Select(p => new ProductsViewModel
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Price = p.Price,
+                Condition = (p.Condition).ToString(),
+                Quantity = p.Quantity,
+                Description = p.Description,
+                Category = p.Category.Name,
+                CreateDate = p.CreateDate
+            }).ToList();
+
+            return this.Ok(
+                new
+                {
+                    productsCount,
+                    numPages,
+                    products = productsToReturn
+                }
+            );
+        }
+        [HttpGet]
         public IHttpActionResult GetProducts([FromUri]GetProductsBindingModel model)
         {
             if (!ModelState.IsValid)
