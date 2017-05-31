@@ -1,0 +1,17 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-xs-12">
+            <div class="panel panel-default shadow-effect">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Sent a new message</h1>
+                </div>
+                <div class="panel-body">
+                    <input type="text" class="form-control" ng-model="messageData.Title" required="required" placeholder="Title"/>
+                    <input type="text" class="form-control" ng-model="messageData.AddresseeUsername" required="required" placeholder="Addresee Username"/>
+                    <textarea class="form-control" id="comment" ng-model="messageData.Content" required="required" placeholder="Message"></textarea>
+                    <a ng-click="addMessage(messageData)" class="btn btn-success btn-block">Send Message</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

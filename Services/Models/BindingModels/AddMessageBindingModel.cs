@@ -19,6 +19,6 @@ namespace Services.Models.BindingModels
         [Required]
         [MinLength(3)]
         [MaxLength(50)]
-        public string AdreseeUsername { get; set; }
+        public string AddresseeUsername { get; set; }
     }
 }

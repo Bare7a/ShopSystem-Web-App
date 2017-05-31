@@ -6,32 +6,44 @@
     }]);
 
 app.constant('baseServiceUrl', 'http://localhost:11184');
-app.constant('pageSize', 4);
+app.constant('productsPageSize', 7);
+app.constant('userProductsPageSize', 10);
+app.constant('messagesPageSize', 20);
 
 app.config(function ($routeProvider, $locationProvider, $httpProvider) {
 
     $routeProvider.when('/', {
-        templateUrl: 'templates/products.html',
-        controller: 'HomeController'
+        templateUrl: 'templates/products/products.html',
+        controller: 'ProductsController'
     });
 
     $routeProvider.when('/products', {
-        templateUrl: 'templates/user-products.html',
-        controller: 'UserProductsController'
+        templateUrl: 'templates/products/user-products.html',
+        controller: 'ProductsController'
     });
 
     $routeProvider.when('/product/:id', {
-        templateUrl: 'templates/product.html',
-        controller: 'ProductController'
+        templateUrl: 'templates/products/product.html',
+        controller: 'ProductsController'
     });
 
     $routeProvider.when('/login', {
-        templateUrl: 'templates/login.html',
+        templateUrl: 'templates/users/login.html',
         controller: 'AuthController'
     });
 
     $routeProvider.when('/messages', {
-        templateUrl: 'templates/messages.html',
+        templateUrl: 'templates/messages/messages.html',
+        controller: 'MessagesController'
+    });
+
+    $routeProvider.when('/message/:id', {
+        templateUrl: 'templates/messages/message.html',
+        controller: 'MessagesController'
+    });
+
+    $routeProvider.when('/messages/sent', {
+        templateUrl: 'templates/messages/sent-message.html',
         controller: 'MessagesController'
     });
 
@@ -44,8 +56,6 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider) {
         requireBase: false
     });
 
-    //$httpProvider.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
-    
     $locationProvider.html5Mode(true);
 });
 

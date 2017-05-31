@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Data.Models;
 using Services.Models.BindingModels;
+using Services.Models.ViewModels;
 using System;
 using System.Linq;
 using System.Web.Http;
@@ -9,6 +10,31 @@ namespace Services.Controllers
 {
     public class CommentsController : BaseApiController
     {
+        [HttpGet]
+        public IHttpActionResult GetCommentByProductId(int id)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            var comments = this.Data.Comments
+                .Where(c => c.ProductId == id).Select(c => new CommentViewModel
+                {
+                    Id = c.Id,
+                    Content = c.Content,
+                    CreateDate = c.CreateDate,
+                    Username = c.User.UserName
+                }).OrderByDescending(c => c.CreateDate);
+
+            if (comments == null)
+            {
+                return this.BadRequest("The product you are trying to retrive the comments from does not exist!");
+            }
+
+            return Ok(comments);
+        }
+
         [HttpPost]
         public IHttpActionResult PostComment(AddCommentBindingModel model)
         {

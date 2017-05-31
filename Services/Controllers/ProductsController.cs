@@ -102,14 +102,13 @@ namespace Services.Controllers
                 products = products.Where(p => p.User.CityId == model.CityId);
             }
 
-            if(model.SortBy != null)
+            if (model.SortBy != null)
             {
-                switch(model.SortBy)
+                switch (model.SortBy)
                 {
                     case "PriceAsc": products = products.OrderBy(p => p.Price).ThenByDescending(p => p.Id); break;
                     case "PriceDesc": products = products.OrderByDescending(p => p.Price).ThenByDescending(p => p.Id); break;
-                    case "FeedbackAsc": products = products.OrderBy(p => (p.User.RecievedFeedbacks.Count == 0? 0.0 : p.User.RecievedFeedbacks.Sum(f=>f.Score) / p.User.RecievedFeedbacks.Count())).ThenByDescending(p => p.Id); break;
-                    case "FeedbackDesc": products = products.OrderByDescending(p => (p.User.RecievedFeedbacks.Count == 0? 0.0 : p.User.RecievedFeedbacks.Sum(f=>f.Score) / p.User.RecievedFeedbacks.Count())).ThenByDescending(p => p.Id); break;
+                    case "Feedback": products = products.OrderByDescending(p => (p.User.RecievedFeedbacks.Count == 0 ? 0.0 : p.User.RecievedFeedbacks.Sum(f => f.Score) / p.User.RecievedFeedbacks.Count())).ThenByDescending(p => p.Id); break;
                     case "DateAsc": products = products.OrderBy(p => p.CreateDate).ThenByDescending(p => p.Id); break;
                     default: products = products.OrderByDescending(p => p.CreateDate).ThenBy(p => p.Id); break;
                 }
@@ -122,7 +121,7 @@ namespace Services.Controllers
             products = products.Where(p => p.Quantity > 0);
 
             int pageSize = 10;
-            if(model.PageSize.HasValue)
+            if (model.PageSize.HasValue)
             {
                 pageSize = model.PageSize.Value;
             }
@@ -171,7 +170,7 @@ namespace Services.Controllers
             }
 
             var product = this.Data.Products
-                .Select(p=> new DetailedProductViewModel
+                .Select(p => new DetailedProductViewModel
                 {
                     Id = p.Id,
                     Name = p.Name,
@@ -179,7 +178,7 @@ namespace Services.Controllers
                     Condition = (p.Condition).ToString(),
                     Quantity = p.Quantity,
                     Description = p.Description,
-                    
+
                     Category = p.Category.Name,
                     CreateDate = p.CreateDate,
                     Submiter = new SubmiterViewModel
@@ -191,7 +190,7 @@ namespace Services.Controllers
                         PhoneNumber = p.User.PhoneNumber,
                         Skype = p.User.Skype
                     },
-                    Pictures = p.Pictures.Select(pi => new PictureViewModel 
+                    Pictures = p.Pictures.Select(pi => new PictureViewModel
                     {
                         Id = pi.Id,
                         Image = pi.Image
@@ -201,18 +200,11 @@ namespace Services.Controllers
                         Id = v.Id,
                         UrlAddress = v.UrlAddress,
                         VideoType = (v.VideoType).ToString()
-                    }),
-                    Comments = p.Comments.Select(c => new CommentViewModel
-                    {
-                        Id = c.Id,
-                        Content = c.Content,
-                        CreateDate = c.CreateDate,
-                        Username = c.User.UserName
                     })
-                   })
+                })
                 .FirstOrDefault(p => p.Id == id);
-           
-            if(product == null)
+
+            if (product == null)
             {
                 return this.NotFound();
             }
@@ -267,7 +259,7 @@ namespace Services.Controllers
                 string urlAddress = "";
                 Match match;
 
-                if(video.VideoType == (int) VideoType.Vbox7)
+                if (video.VideoType == (int)VideoType.Vbox7)
                 {
                     match = vbox7Regex.Match(video.UrlAddress);
                     urlAddress = match.Groups[1].Value;
@@ -298,7 +290,7 @@ namespace Services.Controllers
                 Name = model.Name,
                 Description = model.Description,
                 Price = model.Price,
-                Condition = (ConditionType) model.Condition,
+                Condition = (ConditionType)model.Condition,
                 Quantity = model.Quantity,
                 Pictures = pictures,
                 Videos = videos,
@@ -338,12 +330,12 @@ namespace Services.Controllers
 
             var product = this.Data.Products.FirstOrDefault(p => p.Id == model.Id);
 
-            if(product == null)
+            if (product == null)
             {
                 return this.BadRequest("This product does not exist!");
             }
 
-            if(product.UserId != userId)
+            if (product.UserId != userId)
             {
                 return this.Unauthorized();
             }
@@ -353,7 +345,7 @@ namespace Services.Controllers
             product.Price = model.Price;
             product.Quantity = model.Quantity;
             product.CategoryId = model.CategoryId;
-            product.Condition = (ConditionType) model.Condition;
+            product.Condition = (ConditionType)model.Condition;
 
             this.Data.SaveChanges();
 

@@ -57,6 +57,13 @@ app.factory('authService',
                 }
             },
 
+            getCurrentUsername: function () {
+                var userObject = sessionStorage['currentUser'];
+                if (userObject) {
+                    return JSON.parse(userObject).userName;
+                }
+            },
+
             isAnonymous: function () {
                 return sessionStorage['currentUser'] == undefined;
             },

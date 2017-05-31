@@ -113,7 +113,7 @@ namespace Services.Controllers
                 return this.BadRequest("Model cannot be null");
             }
 
-            var user = this.Data.Users.FirstOrDefault(u => u.UserName == model.AdreseeUsername);
+            var user = this.Data.Users.FirstOrDefault(u => u.UserName == model.AddresseeUsername);
 
             if(user == null)
             {

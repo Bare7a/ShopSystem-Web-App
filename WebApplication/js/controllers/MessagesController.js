@@ -1,52 +1,54 @@
 ﻿'use strict';
 
 app.controller('MessagesController',
-    function ($scope, userService, notifyService, $routeParams) {
+    function ($scope, messageService, notifyService, $routeParams, $location, productsPageSize) {
 
         $scope.messagesParams = {
             'startPage': 1,
-            'pageSize': 5
+            'pageSize': productsPageSize
         };
 
         $scope.reloadMessages = function () {
-            userService.getAllMessages(
+            messageService.getAllMessages(
                 $scope.messagesParams,
                 function success(response) {
-                    console.log(response);
                     $scope.messages = response['data'];
                 },
                 function error(response) {
-                    console.log(response);
                     notifyService.showError("Cannot load messages", response['data']);
                 }
             );
         };
 
 
-        $scope.addNewMessage = function (messageData) {
-            userService.createNewComment(messageData,
+        $scope.addMessage = function (messageData) {
+            messageService.createMessage(messageData,
                 function success() {
                     notifyService.showInfo("Message successfully sent!");
                 },
-                function error(err) {
-                    notifyService.showError("Message was not sent.", err);
+                function error(response) {
+                    notifyService.showError("Message was not sent.", response['data']);
                 }
             );
         };
 
-        $scope.message = function () {
-            userService.getMessageById(
+        $scope.getMessage = function () {
+            messageService.getMessageById(
                 $routeParams.id,
                 function success(response) {
-                    $scope.product = response['data'];
+                    $scope.message = response['data'];
                 },
                 function error(response) {
+                    $location.path('/messages');
                     notifyService.showError("Cannot load message", response['data']);
                 }
             );
         };
 
-        $scope.reloadMessages();
-        //$scope.message();
+        $scope.messageTypeClicked = function (messageTypeId) {
+            $scope.messagesParams.Type = messageTypeId;
+            $scope.messagesParams.startPage = 1;
+            $scope.reloadMessages();
+        };
     }
 );

@@ -1,0 +1,97 @@
+﻿<div class="container" ng-init="product(); reloadComments();">
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="panel panel-default shadow-effect">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Category: {{product.Category}}</h1>
+                </div>
+                <div class="panel-body">
+                    <h1 class="text-center">{{product.Name}}</h1>
+                    <h4 class="col-sm-3 col-xs-6"> <span class="fa fa-shopping-cart"> </span> {{product.Price}} &euro;</h4>
+                    <h4 class="col-sm-3 col-xs-6"> <span class="fa fa-tags"> </span> {{product.Condition}}</h4>
+                    <h4 class="col-sm-3 col-xs-6"> <span class="fa fa-plus-circle"> </span> {{product.Quantity}}</h4>
+                    <h4 class="col-sm-3 col-xs-6"> <span class="fa fa-calendar"> </span> {{product.CreateDate | date:'dd.MM.yyyy'}}</h4>
+                    <hr>
+                    <h4>{{product.Description}}</h4>  
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="panel panel-default shadow-effect">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Submiter</h1>
+                </div>
+                <div class="panel-body">
+                    <h4><span class="fa fa-user"> </span> <a href="/user/{{product.Submiter.Username}}">{{product.Submiter.Username}}</a></h4>
+                    <h4><span class="fa fa-home"> </span> {{product.Submiter.City}}</h4>
+                    <h4 ng-if="product.Submiter.Facebook"><span class="fa fa-facebook"> </span> <a href="{{product.Submiter.Facebook}}">Facebook</a></h4>
+                    <h4 ng-if="product.Submiter.Skype"><span class="fa fa-skype"> </span> <a href="skype:{{product.Submiter.Skype}}?chat"> {{product.Submiter.Skype}}</a></h4>
+                    <h4 ng-if="product.Submiter.Phone"><span class="fa fa-phone"> </span> {{product.Submiter.PhoneNumber}}</h4>
+                    <h4><span class="fa fa-star"> </span> {{product.Submiter.Feedback}} / 5</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default shadow-effect">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Pictures</h3>
+                </div>
+                <div class="panel-body">
+                    <p class="col-sm-3 col-xs-6" ng-repeat="picture in product.Pictures"><img class="img-responsive" src="{{picture.Image}}" /></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div ng-if="product.Videos.length != 0" class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default shadow-effect">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Videos</h3>
+                </div>
+                <div class="panel-body">
+                    <div ng-repeat="video in product.Videos">
+                        <iframe class="col-sm-4 col-md-3 embed-responsive-item" ng-if="video.VideoType == 'YouTube'" ng-src="{{'https://www.youtube.com/embed/' + video.UrlAddress | trustAsResourceUrl}}" allowfullscreen frameborder="0"></iframe>
+                        <iframe class="col-sm-4 col-md-3 embed-responsive-item" ng-if="video.VideoType == 'Vbox7'" ng-src="{{'https://www.vbox7.com/emb/external.php?vid=' + video.UrlAddress | trustAsResourceUrl}}" allowfullscreen frameborder="0"></iframe>
+                        <iframe class="col-sm-4 col-md-3 embed-responsive-item" ng-if="video.VideoType == 'Vimeo'" ng-src="{{'https://player.vimeo.com/video/' + video.UrlAddress | trustAsResourceUrl}}" allowfullscreen frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xm-12 col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>Comments</strong>
+            </div>
+
+
+            <div class="panel-body" ng-if="authService.isLoggedIn()">
+                <h3>Post a comment</h3>
+                <textarea class="form-control" id="comment" ng-model="commentData.Content" required="required"></textarea>
+                <a ng-click="addComment(commentData)" class="btn btn-success btn-block">Publish</a>
+            </div>
+
+            <hr />
+
+            <div class="panel-body" ng-repeat="comment in comments">
+                <div class="comments-list">
+                    <div class="media">
+                        <p class="pull-right"><small>{{comment.CreateDate | date:'dd-MM-yyyy HH:mm'}}</small></p>
+                        <div class="media-body">
+
+                            <h4 class="media-heading user_name">{{comment.Username}}</h4>
+                            <p>{{comment.Content}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

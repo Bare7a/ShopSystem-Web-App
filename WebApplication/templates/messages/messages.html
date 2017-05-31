@@ -1,0 +1,47 @@
+﻿<div class="container" ng-init="reloadMessages()">
+    <div class="col-md-2 col-sm-3">
+        <div class="panel panel-default shadow-effect">
+            <div class="panel-heading">
+                <h1 class="panel-title">Message Options</h1>
+            </div>
+            <div class="panel-body">
+                <h4>Sort Type</h4>
+                <hr />
+                <h4><a href="" ng-click="messageTypeClicked('All')">All</a></h4>
+                <h4><a href="" ng-click="messageTypeClicked('Sent')">Sent</a></h4>
+                <h4><a href="" ng-click="messageTypeClicked('Recieved')">Recieved</a></h4>
+                <hr/>
+                <h4><a href="/messages/sent">Sent Message</a></h4>
+            </div>
+        </div>
+    </div>
+    <div class="row col-md-10 col-sm-9 custyle">
+        <table class="table table-striped custab">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>User</th>
+                    <th>Sent Date</th>
+                </tr>
+            </thead>
+                <tr ng-repeat="message in messages.messages">
+                    <td><a href="/message/{{message.Id}}">{{message.Title}}</a></td>
+                    <td ng-if="authService.getCurrentUsername() != message.SenderUsername">Recieved</td>
+                    <td ng-if="authService.getCurrentUsername() != message.AddresseeUsername">Sent</td>
+                    <td ng-if="authService.getCurrentUsername() != message.SenderUsername">{{message.SenderUsername}}</td>
+                    <td ng-if="authService.getCurrentUsername() != message.AddresseeUsername">{{message.AddresseeUsername}}</td>
+                    <td>{{message.CreateDate | date:'dd-MM-yyyy HH:mm'}}</td>
+                </tr>
+        </table>
+    </div>
+</div>
+
+<div ng-if="messages.messages.length==0" class="box no-data">
+    No messages.
+</div>
+
+<div class="text-center">
+    <ul uib-pagination total-items="messages.messagesCount" ng-model="messagesParams.startPage" items-per-page="messagesParams.pageSize"
+        max-size="8" class="pagination-sm" boundary-link-numbers="true" ng-change="reloadMessages()" previous-text="&laquo;" next-text="&raquo;"></ul>
+</div>
