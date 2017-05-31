@@ -38,7 +38,7 @@ app.controller('AuthController',
                 reader.onload = function () {
                     $scope.userData.profilePicture = reader.result;
                     $(".image-box").html("<img class='img-responsive' src='" + reader.result + "'>");
-                };1
+                };
                 reader.readAsDataURL(file);
             } else {
                 $(".image-box").html("<p>File type not supported!</p>");
