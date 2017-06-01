@@ -24,10 +24,11 @@ app.controller('MessagesController',
         $scope.addMessage = function (messageData) {
             messageService.createMessage(messageData,
                 function success() {
+                    $location.path('/messages');
                     notifyService.showInfo("Message successfully sent!");
                 },
                 function error(response) {
-                    notifyService.showError("Message was not sent.", response['data']);
+                    notifyService.showError("Message was not sent", response['data']);
                 }
             );
         };

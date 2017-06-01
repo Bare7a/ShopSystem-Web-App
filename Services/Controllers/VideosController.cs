@@ -4,11 +4,36 @@ using Services.Models.BindingModels;
 using System.Linq;
 using System.Web.Http;
 using System.Text.RegularExpressions;
+using Services.Models.ViewModels;
 
 namespace Services.Controllers
 {
     public class VideosController : BaseApiController
     {
+        [HttpGet]
+        public IHttpActionResult GetVideosByProductId(int id)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            var videos = this.Data.Videos
+                .Where(v => v.ProductId == id).Select(v => new VideoViewModel
+                {
+                    Id = v.Id,
+                    UrlAddress = v.UrlAddress,
+                    VideoType = v.VideoType.ToString()
+                }).OrderByDescending(v => v.Id);
+
+            if (videos == null)
+            {
+                return this.BadRequest("The product you are trying to retrive the comments from does not exist!");
+            }
+
+            return Ok(videos);
+        }
+
         [HttpPost]
         public IHttpActionResult PostVideo(AddVideoBindingModel model)
         {
@@ -144,7 +169,7 @@ namespace Services.Controllers
         }
 
         [HttpDelete]
-        public IHttpActionResult DeleteComment(int id)
+        public IHttpActionResult DeleteVideoById(int id)
         {
             string userId = this.User.Identity.GetUserId();
 
@@ -153,19 +178,15 @@ namespace Services.Controllers
                 return this.BadRequest(this.ModelState);
             }
 
-            var video = this.Data.Videos.FirstOrDefault(v => v.Id == id);
+            var video = this.Data.Videos.FirstOrDefault(v => v.Id == id && v.Product.UserId == userId);
 
             if (video == null)
-            {
-                return this.BadRequest("The video is not valid!");
-            }
-
-            if (video.Product.UserId != userId)
             {
                 return this.BadRequest("The video you are trying to delete is not yours!");
             }
 
             this.Data.Videos.Remove(video);
+            this.Data.SaveChanges();
 
             return Ok("The video was successfully deleted!");
         }

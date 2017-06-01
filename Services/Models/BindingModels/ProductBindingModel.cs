@@ -14,7 +14,7 @@ namespace Services.Models.BindingModels
         public int Quantity { get; set; }
 
         [Range(0, 1)]
-        public int Condition { get; set; }
+        public int ConditionId { get; set; }
 
         [Required]
         [MinLength(3)]

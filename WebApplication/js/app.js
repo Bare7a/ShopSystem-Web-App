@@ -17,14 +17,24 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider) {
         controller: 'ProductsController'
     });
 
-    $routeProvider.when('/products', {
-        templateUrl: 'templates/products/user-products.html',
-        controller: 'ProductsController'
-    });
-
     $routeProvider.when('/product/:id', {
         templateUrl: 'templates/products/product.html',
-        controller: 'ProductsController'
+        controller: 'ProductDetailsController'
+    });
+
+    $routeProvider.when('/user/products', {
+        templateUrl: 'templates/products/user-products.html',
+        controller: 'UserProductsController'
+    });
+
+    $routeProvider.when('/products/add', {
+        templateUrl: 'templates/products/add-product.html',
+        controller: 'AddProductsController'
+    });
+
+    $routeProvider.when('/products/edit/:id', {
+        templateUrl: 'templates/products/edit-product.html',
+        controller: 'EditProductsController'
     });
 
     $routeProvider.when('/login', {

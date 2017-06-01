@@ -13,9 +13,11 @@ app.factory('notifyService',
             },
             showError: function(msg, serverError) {
                 var errors = [];
-                if (serverError && serverError.error_description) {
-                    errors.push(serverError.error_description);
+
+                if (serverError && serverError.Message) {
+                    errors.push(serverError.Message);
                 }
+
                 if (serverError && serverError.ModelState) {
                     var modelStateErrors = serverError.ModelState;
                     for (var propertyName in modelStateErrors) {
@@ -28,6 +30,7 @@ app.factory('notifyService',
                         }
                     }
                 }
+
                 if (errors.length > 0) {
                     msg = msg + ":<br>" + errors.join("<br>");
                 }

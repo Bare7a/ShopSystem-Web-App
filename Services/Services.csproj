@@ -262,11 +262,12 @@
     <Compile Include="Models\BindingModels\AddPictureBindingModel.cs" />
     <Compile Include="Models\ViewModels\CityViewModel.cs" />
     <Compile Include="Models\ViewModels\CommentViewModel.cs" />
+    <Compile Include="Models\ViewModels\UserProductViewModel.cs" />
     <Compile Include="Models\ViewModels\FeedbackViewModel.cs" />
     <Compile Include="Models\ViewModels\MessageDetailedViewModel.cs" />
     <Compile Include="Models\ViewModels\MessagesViewModel.cs" />
     <Compile Include="Models\ViewModels\PictureViewModel.cs" />
-    <Compile Include="Models\ViewModels\ProductDetailedViewModel.cs" />
+    <Compile Include="Models\ViewModels\DetailedProductViewModel.cs" />
     <Compile Include="Models\ViewModels\ProductsListViewModel.cs" />
     <Compile Include="Models\ViewModels\ProductsViewModel.cs" />
     <Compile Include="Models\ViewModels\CategoryViewModel.cs" />

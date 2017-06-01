@@ -13,6 +13,7 @@ namespace Services.Controllers
     public class ProductsController : BaseApiController
     {
         [HttpGet]
+        [Authorize]
         [Route("api/UserProducts")]
         public IHttpActionResult GetUserProducts([FromUri]GetUserProductsBindingModel model)
         {
@@ -62,6 +63,38 @@ namespace Services.Controllers
                 }
             );
         }
+
+        [HttpGet]
+        [Authorize]
+        [Route("api/UserProducts/{id}")]
+        public IHttpActionResult GetUserProductById(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            var product = this.Data.Products
+                .Select(p => new UserProductViewModel
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price,
+                    ConditionId = (int) p.Condition,
+                    Quantity = p.Quantity,
+                    Description = p.Description,
+                    CategoryId = p.Category.Id
+                })
+                .FirstOrDefault(p => p.Id == id);
+
+            if (product == null)
+            {
+                return this.NotFound();
+            }
+
+            return Ok(product);
+        }
+
         [HttpGet]
         public IHttpActionResult GetProducts([FromUri]GetProductsBindingModel model)
         {
@@ -190,17 +223,6 @@ namespace Services.Controllers
                         PhoneNumber = p.User.PhoneNumber,
                         Skype = p.User.Skype
                     },
-                    Pictures = p.Pictures.Select(pi => new PictureViewModel
-                    {
-                        Id = pi.Id,
-                        Image = pi.Image
-                    }),
-                    Videos = p.Videos.Select(v => new VideoViewModel
-                    {
-                        Id = v.Id,
-                        UrlAddress = v.UrlAddress,
-                        VideoType = (v.VideoType).ToString()
-                    })
                 })
                 .FirstOrDefault(p => p.Id == id);
 
@@ -290,7 +312,7 @@ namespace Services.Controllers
                 Name = model.Name,
                 Description = model.Description,
                 Price = model.Price,
-                Condition = (ConditionType)model.Condition,
+                Condition = (ConditionType)model.ConditionId,
                 Quantity = model.Quantity,
                 Pictures = pictures,
                 Videos = videos,
@@ -321,13 +343,6 @@ namespace Services.Controllers
                 return this.BadRequest("Model cannot be null");
             }
 
-            var category = this.Data.Categories.FirstOrDefault(c => c.Id == model.CategoryId);
-
-            if (category == null)
-            {
-                return this.BadRequest("Category is not valid!");
-            }
-
             var product = this.Data.Products.FirstOrDefault(p => p.Id == model.Id);
 
             if (product == null)
@@ -340,12 +355,19 @@ namespace Services.Controllers
                 return this.Unauthorized();
             }
 
+            var category = this.Data.Categories.FirstOrDefault(c => c.Id == model.CategoryId);
+
+            if (category == null)
+            {
+                return this.BadRequest("Category is not valid!");
+            }
+
             product.Name = model.Name;
             product.Description = model.Description;
             product.Price = model.Price;
             product.Quantity = model.Quantity;
             product.CategoryId = model.CategoryId;
-            product.Condition = (ConditionType)model.Condition;
+            product.Condition = (ConditionType)model.ConditionId;
 
             this.Data.SaveChanges();
 

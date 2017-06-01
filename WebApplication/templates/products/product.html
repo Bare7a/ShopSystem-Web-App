@@ -1,4 +1,4 @@
-﻿<div class="container" ng-init="product(); reloadComments();">
+﻿<div class="container">
     <div class="row">
         <div class="col-sm-9">
             <div class="panel panel-default shadow-effect">
@@ -41,21 +41,21 @@
                     <h3 class="panel-title">Pictures</h3>
                 </div>
                 <div class="panel-body">
-                    <p class="col-sm-3 col-xs-6" ng-repeat="picture in product.Pictures"><img class="img-responsive" src="{{picture.Image}}" /></p>
+                    <p class="col-sm-3 col-xs-6" ng-repeat="picture in pictures"><img class="img-responsive" src="{{picture.Image}}" /></p>
                 </div>
             </div>
         </div>
 
     </div>
 
-    <div ng-if="product.Videos.length != 0" class="row">
+    <div ng-if="videos.length != 0" class="row">
         <div class="col-sm-12">
             <div class="panel panel-default shadow-effect">
                 <div class="panel-heading">
                     <h3 class="panel-title">Videos</h3>
                 </div>
                 <div class="panel-body">
-                    <div ng-repeat="video in product.Videos">
+                    <div ng-repeat="video in videos">
                         <iframe class="col-sm-4 col-md-3 embed-responsive-item" ng-if="video.VideoType == 'YouTube'" ng-src="{{'https://www.youtube.com/embed/' + video.UrlAddress | trustAsResourceUrl}}" allowfullscreen frameborder="0"></iframe>
                         <iframe class="col-sm-4 col-md-3 embed-responsive-item" ng-if="video.VideoType == 'Vbox7'" ng-src="{{'https://www.vbox7.com/emb/external.php?vid=' + video.UrlAddress | trustAsResourceUrl}}" allowfullscreen frameborder="0"></iframe>
                         <iframe class="col-sm-4 col-md-3 embed-responsive-item" ng-if="video.VideoType == 'Vimeo'" ng-src="{{'https://player.vimeo.com/video/' + video.UrlAddress | trustAsResourceUrl}}" allowfullscreen frameborder="0"></iframe>

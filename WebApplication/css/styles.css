@@ -1,16 +1,13 @@
-﻿body 
-{
+﻿body {
     padding-top: 70px;
     background-image: url('background.png');
 }
 
-a 
-{
+a {
     text-decoration: none;
 }
 
-.height-fix
-{
+.height-fix {
     top: 200px;
 }
 
@@ -33,8 +30,7 @@ a
     }
 
 
-.shadow-effect 
-{
+.shadow-effect {
     box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
 }
 
@@ -49,4 +45,11 @@ hr {
 
 .comments-list .media {
     border-bottom: 1px dotted #ccc;
+}
+
+.product-img {
+    margin: 0 auto;
+    display: block;
+    width: auto;
+    height: 150px;
 }

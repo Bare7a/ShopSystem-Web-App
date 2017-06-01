@@ -1,4 +1,4 @@
-﻿<div class="container" ng-init="reloadProducts()">
+﻿<div class="container">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-lg-3">
             <div class="panel panel-default shadow-effect">
@@ -62,6 +62,7 @@
             </div>
         </div>
 
+
         <div class="col-sm-6 col-md-4 col-lg-3" ng-repeat="product in products.products">
             <a href="/product/{{product.Id}}">
                 <div class="panel panel-default shadow-effect">
@@ -69,7 +70,7 @@
                         <h1 class="panel-title text-center">{{product.Name}}</h1>
                     </div>
                     <div class="panel-body">
-                        <p><img class="img-responsive" src="{{product.Picture}}" alt=""></p>
+                        <p><img class="img-responsive product-img" src="{{product.Picture}}" alt=""></p>
 
                         <h4 class="pull-right"><span class="fa fa-shopping-cart"> </span> {{product.Price}} &euro;</h4>
                         <h4>{{product.Condition}}</h4>

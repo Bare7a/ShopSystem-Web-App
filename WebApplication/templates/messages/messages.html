@@ -19,19 +19,22 @@
         <table class="table table-striped custab">
             <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Type</th>
-                    <th>User</th>
-                    <th>Sent Date</th>
+                    <th class="text-center">Seen</th>
+                    <th class="text-center">Title</th>
+                    <th class="text-center">Type</th>
+                    <th class="text-center">User</th>
+                    <th class="text-center">Sent Date</th>
                 </tr>
             </thead>
                 <tr ng-repeat="message in messages.messages">
-                    <td><a href="/message/{{message.Id}}">{{message.Title}}</a></td>
-                    <td ng-if="authService.getCurrentUsername() != message.SenderUsername">Recieved</td>
-                    <td ng-if="authService.getCurrentUsername() != message.AddresseeUsername">Sent</td>
-                    <td ng-if="authService.getCurrentUsername() != message.SenderUsername">{{message.SenderUsername}}</td>
-                    <td ng-if="authService.getCurrentUsername() != message.AddresseeUsername">{{message.AddresseeUsername}}</td>
-                    <td>{{message.CreateDate | date:'dd-MM-yyyy HH:mm'}}</td>
+                    <td class="text-center" ng-if="message.IsSeen"><span class="fa fa-check" title="Seen"></span></td>
+                    <td class="text-center" ng-if="!message.IsSeen"><span class="fa fa-exclamation" title="Not Seen"></span></td>
+                    <td class="text-center"><a href="/message/{{message.Id}}">{{message.Title}}</a></td>
+                    <td class="text-center" ng-if="authService.getCurrentUsername() != message.SenderUsername">Recieved</td>
+                    <td class="text-center" ng-if="authService.getCurrentUsername() != message.AddresseeUsername">Sent</td>
+                    <td class="text-center" ng-if="authService.getCurrentUsername() != message.SenderUsername">{{message.SenderUsername}}</td>
+                    <td class="text-center" ng-if="authService.getCurrentUsername() != message.AddresseeUsername">{{message.AddresseeUsername}}</td>
+                    <td class="text-center">{{message.CreateDate | date:'dd-MM-yyyy HH:mm'}}</td>
                 </tr>
         </table>
     </div>
