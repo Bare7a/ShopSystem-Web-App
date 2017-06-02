@@ -1,4 +1,4 @@
-﻿app.factory('messageService',
+﻿app.factory('messagesService',
     function ($http, baseServiceUrl, authService) {
         return {
 

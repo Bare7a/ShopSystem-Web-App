@@ -1,9 +1,9 @@
 ﻿'use strict';
 
 app.controller('ProductDetailsController',
-    function ($scope, productService, notifyService, $location, $routeParams) {
+    function ($scope, productsService, notifyService, $location, $routeParams) {
          $scope.product = function () {
-            productService.getProductById(
+            productsService.getProductById(
                 $routeParams.id,
                 function success(response) {
                     $scope.product = response['data'];
@@ -16,7 +16,7 @@ app.controller('ProductDetailsController',
         };
 
          $scope.videos = function () {
-             productService.getAllVideos(
+             productsService.getAllVideos(
                  $routeParams.id,
                  function success(response) {
                      $scope.videos = response['data'];
@@ -29,7 +29,7 @@ app.controller('ProductDetailsController',
          };
 
          $scope.pictures = function () {
-             productService.getAllPictures(
+             productsService.getAllPictures(
                  $routeParams.id,
                  function success(response) {
                      $scope.pictures = response['data'];
@@ -42,7 +42,7 @@ app.controller('ProductDetailsController',
          };
 
         $scope.addComment = function (commentData) {
-            productService.createComment($routeParams.id, commentData,
+            productsService.createComment($routeParams.id, commentData,
                 function success() {
                     $scope.reloadComments();
                     notifyService.showInfo("Comment successfully added!");
@@ -54,7 +54,7 @@ app.controller('ProductDetailsController',
         };
 
         $scope.reloadComments = function () {
-            productService.getAllComments($routeParams.id,
+            productsService.getAllComments($routeParams.id,
                 function success(response) {
                     $scope.comments = response['data'];
                 },

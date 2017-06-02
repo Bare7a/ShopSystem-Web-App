@@ -1,10 +1,10 @@
 ﻿'use strict';
 
 app.controller('EditProductsController',
-    function ($scope, productService, notifyService, categoriesService, $location, $compile, $routeParams) {
+    function ($scope, productsService, notifyService, categoriesService, $location, $compile, $routeParams) {
 
         $scope.editProduct = function () {
-            productService.editProduct(
+            productsService.editProduct(
                 $routeParams.id,
                 $scope.product,
                 function success(response) {
@@ -18,7 +18,7 @@ app.controller('EditProductsController',
         };
 
         $scope.product = function () {
-            productService.getUserProductById(
+            productsService.getUserProductById(
                 $routeParams.id,
                 function success(response) {
                     $scope.product = response['data'];
@@ -31,7 +31,7 @@ app.controller('EditProductsController',
         };
 
         $scope.reloadPictures = function () {
-            productService.getAllPictures(
+            productsService.getAllPictures(
                 $routeParams.id,
                 function success(response) {
                     $scope.pictures = response['data'];
@@ -43,7 +43,7 @@ app.controller('EditProductsController',
         }
 
         $scope.addPicture = function (pictureData) {
-            productService.createPicture(
+            productsService.createPicture(
                 pictureData,
                 function success() {
                     $scope.reloadPictures();
@@ -56,7 +56,7 @@ app.controller('EditProductsController',
         };
 
         $scope.deletePicture = function (id) {
-            productService.deletePictureById(
+            productsService.deletePictureById(
                 id,
                 function success(response) {
                     $scope.reloadPictures();
@@ -69,7 +69,7 @@ app.controller('EditProductsController',
         }
 
         $scope.reloadVideos = function () {
-            productService.getAllVideos(
+            productsService.getAllVideos(
                 $routeParams.id,
                 function success(response) {
                     $scope.videos = response['data'];
@@ -81,7 +81,7 @@ app.controller('EditProductsController',
         }
 
         $scope.addVideo = function (videoData) {
-            productService.createVideo(
+            productsService.createVideo(
                 $routeParams.id,
                 videoData,
                 function success() {
@@ -95,7 +95,7 @@ app.controller('EditProductsController',
         };
 
         $scope.deleteVideo = function (id) {
-            productService.deleteVideoById(
+            productsService.deleteVideoById(
                 id,
                 function success(response) {
                     $scope.reloadVideos();

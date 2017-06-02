@@ -1,14 +1,14 @@
 ﻿'use strict';
 
 app.controller('UserProductsController',
-    function ($scope, productService, notifyService, $location, $routeParams, userProductsPageSize) {
+    function ($scope, productsService, notifyService, $location, $routeParams, userProductsPageSize) {
         $scope.productsParams = {
             'startPage': 1,
             'pageSize': userProductsPageSize
         };
 
         $scope.reloadProducts = function () {
-            productService.getAllUserProducts(
+            productsService.getAllUserProducts(
                 $scope.productsParams,
                 function success(response) {
                     $scope.products = response['data'];
@@ -21,7 +21,7 @@ app.controller('UserProductsController',
         };
 
         $scope.deleteProduct = function (id) {
-            productService.deleteProductById(
+            productsService.deleteProductById(
                 id,
                 function success() {
                     $scope.reloadProducts();

@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-app.factory('productService',
+app.factory('productsService',
     function ($http, baseServiceUrl, authService) {
         return {
             getAllProducts: function (params, success, error) {

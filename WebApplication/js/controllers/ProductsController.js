@@ -1,14 +1,14 @@
 ﻿'use strict';
 
 app.controller('ProductsController',
-    function ($scope, productService, notifyService, citiesService, categoriesService, $routeParams, productsPageSize) {
+    function ($scope, productsService, notifyService, citiesService, categoriesService, $routeParams, productsPageSize) {
         $scope.productsParams = {
             'startPage': 1,
             'pageSize': productsPageSize
         };
 
         $scope.reloadProducts = function () {
-            productService.getAllProducts(
+            productsService.getAllProducts(
                 $scope.productsParams,
                 function success(response) {
                     $scope.products = response['data'];

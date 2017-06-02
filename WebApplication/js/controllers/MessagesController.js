@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 app.controller('MessagesController',
-    function ($scope, messageService, notifyService, $routeParams, $location, productsPageSize) {
+    function ($scope, messagesService, notifyService, $routeParams, $location, productsPageSize) {
 
         $scope.messagesParams = {
             'startPage': 1,
@@ -9,7 +9,7 @@ app.controller('MessagesController',
         };
 
         $scope.reloadMessages = function () {
-            messageService.getAllMessages(
+            messagesService.getAllMessages(
                 $scope.messagesParams,
                 function success(response) {
                     $scope.messages = response['data'];
@@ -22,7 +22,7 @@ app.controller('MessagesController',
 
 
         $scope.addMessage = function (messageData) {
-            messageService.createMessage(messageData,
+            messagesService.createMessage(messageData,
                 function success() {
                     $location.path('/messages');
                     notifyService.showInfo("Message successfully sent!");
@@ -34,7 +34,7 @@ app.controller('MessagesController',
         };
 
         $scope.getMessage = function () {
-            messageService.getMessageById(
+            messagesService.getMessageById(
                 $routeParams.id,
                 function success(response) {
                     $scope.message = response['data'];

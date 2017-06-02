@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-xs-6">
                         <div class="form-group">
-                            <select ng-options="condition.Id as condition.Name for condition in conditions" class="form-control" ng-model="product.ConditionId" id="condition" required="required"></select>
+                            <select ng-options="condition.Id as condition.Name for condition in conditions" class="form-control" ng-model="product.ConditionId" id="condition"></select>
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="form-group">
-                            <select ng-options="category.Id as category.Name for category in categories" class="form-control" id="category" ng-model="product.CategoryId" ng-required="required"></select>
+                            <select ng-options="category.Id as category.Name for category in categories" class="form-control" id="category" ng-model="product.CategoryId"></select>
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                         <input type="text" class="form-control" placeholder="Url Address" ng-model="videoData.UrlAddress" />
                     </div>
                     <div class="col-xs-5">
-                        <select ng-options="videoType.Id as videoType.Name for videoType in videoTypes" class="form-control" ng-model="videoData.VideoType" id="condition" required="required">
+                        <select ng-options="videoType.Id as videoType.Name for videoType in videoTypes" class="form-control" ng-model="videoData.VideoType" id="condition">
                             <option value="">-- Type --</option>
                         </select>
 
