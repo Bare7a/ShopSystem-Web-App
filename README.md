@@ -24,25 +24,31 @@
   - [x] Get All Product Comments
   - [x] Get All Product Pictures
   - [x] Get All Product Videos
-  - [x] Get Messages List
-  - [x] Get Message Details
+  - [x] Get All User Feedbacks
+  - [x] Get User Details
   - [x] User Login
   - [x] User Register
   
 - [x] [User Services]
+  - [x] Get Account Details
+  - [x] Get Messages List
+  - [x] Get Message Details
   - [x] Post new Product
   - [x] Post new product Comment
   - [x] Post new product Picture
   - [x] Post new product Video
   - [x] Post new Message
+  - [x] Put Account
   - [x] Put Product
   - [x] Put product Comment
   - [x] Put product Picture
   - [x] Put product Video
+  - [x] Put user Feedback
   - [x] Delete Product
   - [x] Delete product Comment
   - [x] Delete product Picture
   - [x] Delete Product Video
+  - [x] Delete user Feedback
   - [x]	Authorization
   
 - [x] [Additional]
@@ -63,9 +69,14 @@
   - [x] List My Products
   - [x] Edit Product
   - [x]	Delete Product
+  - [x] User Details
+  - [x] Edit Account Info
   - [x]	List all Messages
   - [x]	Read Message
   - [x]	Reply to Message
   - [x]	Sent a new Message
-  - [x] Logout
+  - [x] Logout  
   - [x]	Authorization Checks
+
+## ShopSystem Database Diagram
+![Database Diagram](database.png)
