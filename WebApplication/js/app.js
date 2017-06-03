@@ -8,28 +8,28 @@
 app.constant('baseServiceUrl', 'http://localhost:11184');
 app.constant('productsPageSize', 7);
 app.constant('userProductsPageSize', 10);
-app.constant('messagesPageSize', 20);
+app.constant('messagesPageSize', 10);
 
 app.config(function ($routeProvider, $locationProvider, $httpProvider) {
 
     $routeProvider.when('/', {
         templateUrl: 'templates/products/products.html',
-        controller: 'ProductsController'
+        controller: 'ListProductsController'
     });
 
     $routeProvider.when('/product/:id', {
         templateUrl: 'templates/products/product.html',
-        controller: 'ProductDetailsController'
+        controller: 'ViewProductController'
     });
 
-    $routeProvider.when('/user/products', {
+    $routeProvider.when('/products/user', {
         templateUrl: 'templates/products/user-products.html',
-        controller: 'UserProductsController'
+        controller: 'ViewOwnProductsController'
     });
 
     $routeProvider.when('/products/add', {
         templateUrl: 'templates/products/add-product.html',
-        controller: 'AddProductsController'
+        controller: 'AddProductController'
     });
 
     $routeProvider.when('/products/edit/:id', {
@@ -42,19 +42,34 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider) {
         controller: 'AuthController'
     });
 
+    $routeProvider.when('/user/:username', {
+        templateUrl: 'templates/users/profile.html',
+        controller: 'ViewProfileController'
+    });
+
+    $routeProvider.when('/account/edit', {
+        templateUrl: 'templates/users/edit-profile.html',
+        controller: 'EditProfileController'
+    });
+
     $routeProvider.when('/messages', {
         templateUrl: 'templates/messages/messages.html',
-        controller: 'MessagesController'
+        controller: 'ListMessagesController'
     });
 
     $routeProvider.when('/message/:id', {
         templateUrl: 'templates/messages/message.html',
-        controller: 'MessagesController'
+        controller: 'ViewMessageController'
     });
 
     $routeProvider.when('/messages/sent', {
         templateUrl: 'templates/messages/sent-message.html',
-        controller: 'MessagesController'
+        controller: 'AddMessageController'
+    });
+
+    $routeProvider.when('/messages/sent/:username', {
+        templateUrl: 'templates/messages/sent-message.html',
+        controller: 'AddMessageController'
     });
 
     $routeProvider.otherwise(
@@ -67,20 +82,4 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider) {
     });
 
     $locationProvider.html5Mode(true);
-});
-
-app.run(function ($rootScope, $location, authService) {
-    $rootScope.$on('$locationChangeStart', function (event) {
-        if ($location.path().indexOf("/user/") != -1 && !authService.isLoggedIn()) {
-            $location.path('/login');
-        }
-    });
-
-    $rootScope.$on('$locationChangeStart', function (event) {
-        if ($location.path().indexOf("/admin/") != -1 && !authService.isAdmin()) {
-            $location.path('/login');
-        } else if (($location.path().indexOf('/user/') != -1) && authService.isAdmin()) {
-            $location.path('/admin/home')
-        }
-    })
 });

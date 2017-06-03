@@ -1,7 +1,10 @@
 ﻿'use strict';
 
-app.controller('UserProductsController',
-    function ($scope, productsService, notifyService, $location, $routeParams, userProductsPageSize) {
+app.controller('ViewOwnProductsController',
+    function ($rootScope, $scope, productsService, notifyService, $location, $routeParams, userProductsPageSize) {
+
+        $rootScope.title = "My products";
+
         $scope.productsParams = {
             'startPage': 1,
             'pageSize': userProductsPageSize

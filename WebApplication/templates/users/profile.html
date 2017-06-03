@@ -1,0 +1,63 @@
+﻿<div class="row">
+    <div class="col-sm-5 col-xs-12">
+        <div class="panel panel-default shadow-effect">
+            <div class="panel-heading">
+                <a class="pull-right" href="account/edit" ng-if="user.Username ==authService.getCurrentUsername()"><span class="fa fa-edit"></span></a>
+                <h1 class="panel-title">
+                    {{user.Username}} 
+                </h1>
+            </div>
+
+            <div class="panel-body">
+
+                <div class="col-md-3 col-sm-3 col-xs-4" ng-if="user.ProfilePicture">
+                    <img class="img-responsive" src="{{user.ProfilePicture}}" />
+                </div>
+                <div class="col-md-9 col-sm-9 col-xs-8">
+                    <h4><span class="fa fa-home"> </span> {{user.City}}</h4>
+                    <h4 ng-if="product.Submiter.Username != authService.getCurrentUsername()"><span class="fa fa-envelope"> </span> <a href="messages/sent/{{product.Submiter.Username}}">Sent a PM</a></h4>
+                    <h4 ng-if="user.Facebook"><span class="fa fa-facebook"> </span> <a href="{{user.Facebook}}">Facebook</a></h4>
+                    <h4 ng-if="user.Skype"><span class="fa fa-skype"> </span> <a href="skype:{{user.Skype}}?chat"> {{user.Skype}}</a></h4>
+                    <h4 ng-if="user.PhoneNumber"><span class="fa fa-phone"> </span> {{user.PhoneNumber}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-7 col-xs-12">
+        <div class="panel panel-default shadow-effect">
+            <div class="panel-heading">
+                <h1 class="panel-title">Feedbacks</h1>
+            </div>
+
+            <div class="panel-body">
+                <div ng-if="authService.isLoggedIn() && (authService.getCurrentUsername() != user.Username)">
+                    <div class="col-xs-8">
+                        <h3>New feedback</h3>
+                    </div>
+
+                    <div class="col-xs-4">
+                        <select ng-options="score.val as score.val for score in feedbackScores" class="form-control pull-right" ng-model="feedbackData.Score" id="condition" required="required"><option value="">-- Score --</option></select>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <textarea class="form-control" id="feedback" ng-model="feedbackData.Comment" required="required"></textarea>
+                        <a ng-click="addFeedback(feedbackData)" class="btn btn-success btn-block">Submit Feedback</a>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="comments-list col-xs-12" ng-repeat="feedback in feedbacks">
+                    <div class="media">
+                        <p class="pull-right"><small>{{feedback.CreateDate | date:'dd-MM-yyyy HH:mm'}}</small></p>
+                        <div class="media-body">
+
+                            <h4 class="media-heading user_name">{{feedback.Username}} <span class="fa fa-star"></span> {{feedback.Score}} </h4>
+                            <p>{{feedback.Comment}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

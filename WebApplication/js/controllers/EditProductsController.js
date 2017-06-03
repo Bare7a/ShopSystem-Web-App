@@ -1,14 +1,16 @@
 ﻿'use strict';
 
 app.controller('EditProductsController',
-    function ($scope, productsService, notifyService, categoriesService, $location, $compile, $routeParams) {
+    function ($rootScope, $scope, productsService, notifyService, categoriesService, $location, $compile, $routeParams) {
+
+        $rootScope.title = "Edit product";
 
         $scope.editProduct = function () {
             productsService.editProduct(
                 $routeParams.id,
                 $scope.product,
                 function success(response) {
-                    $location.path('/user/products');
+                    $location.path('/products/user');
                     notifyService.showInfo("Product successfully edited!");
                 },
                 function error(response) {

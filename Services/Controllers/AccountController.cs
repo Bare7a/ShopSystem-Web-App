@@ -6,7 +6,6 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.ModelBinding;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -17,12 +16,13 @@ using Services.Models;
 using Services.Providers;
 using Services.Results;
 using Data.Models;
+using System.Linq;
 
 namespace Services.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]
-    public class AccountController : ApiController
+    public class AccountController : BaseApiController
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
@@ -67,6 +67,56 @@ namespace Services.Controllers
             };
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("UserInfo/{username}")]
+        public IHttpActionResult GetUserInfoById(string username)
+        {
+            var user = this.Data.Users.Select(u => new ProfileViewModel
+            {
+                Username = u.UserName,
+                ProfilePicture = u.ProfilePicture,
+                City = u.City.Name,
+                PhoneNumber = u.PhoneNumber,
+                Facebook = u.Facebook,
+                Skype = u.Skype
+            }).FirstOrDefault(u => u.Username == username);
+
+            if (user == null)
+            {
+                return this.BadRequest(String.Format("User with the username {0} doesn't exist!", username));
+            }
+
+            return Ok(user);
+        }
+
+        [HttpGet]
+        [Route("Info")]
+        public IHttpActionResult AccountInfo()
+        {
+            var username = this.User.Identity.GetUserName();
+
+            var user = this.Data.Users
+                .Select(u => new UserEditViewModel
+                {
+                    Username = u.UserName,
+                    Email = u.Email,
+                    CityId = u.CityId,
+                    ProfilePicture = u.ProfilePicture,
+                    PhoneNumber = u.PhoneNumber,
+                    Facebook = u.Facebook,
+                    Skype = u.Skype
+                })
+                .FirstOrDefault(u => u.Username == username);
+
+            if (user == null)
+            {
+                return this.BadRequest();
+            }
+
+            return Ok(user);
+        }
+
         // POST api/Account/Logout
         [Route("Logout")]
         public IHttpActionResult Logout()
@@ -74,6 +124,62 @@ namespace Services.Controllers
             Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
             return Ok();
         }
+
+        [HttpPut]
+        [Route("EditProfile")]
+        public async Task<IHttpActionResult> EditProfileAsync(AccountEditBindingModel model)
+        {
+            string userId = this.User.Identity.GetUserId();
+
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = this.Data.Users.FirstOrDefault(u => u.Id == userId);
+
+            if (user == null)
+            {
+                return this.BadRequest("The profile you are trying to edit does not exist!");
+            }
+
+            var city = this.Data.Cities.FirstOrDefault(c => c.Id == model.CityId);
+
+            if (city == null)
+            {
+                return this.BadRequest("The city that you've selected doesn't exist!");
+            }
+
+            if (model.OldPassword != null && model.NewPassword != null)
+            {
+                IdentityResult result = await UserManager.ChangePasswordAsync(userId, model.OldPassword,
+                    model.NewPassword);
+
+                if (!result.Succeeded)
+                {
+                    return GetErrorResult(result);
+                }
+            }
+
+            if (user.UserName != model.Username && this.Data.Users.Any(u => u.UserName == model.Username))
+            {
+                return this.BadRequest("There already is a user with the same username!");
+            }
+
+            user.UserName = model.Username;
+            user.CityId = model.CityId;
+            user.Facebook = model.Facebook;
+            user.Skype = model.Skype;
+            user.Email = model.Email;
+            user.ProfilePicture = model.ProfilePicture;
+            user.PhoneNumber = model.PhoneNumber;
+
+            this.Data.SaveChanges();
+
+            return Ok("Profile edited successfully!");
+        }
+
 
         // GET api/Account/ManageInfo?returnUrl=%2F&generateState=true
         [Route("ManageInfo")]
@@ -126,7 +232,7 @@ namespace Services.Controllers
 
             IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-            
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -259,9 +365,9 @@ namespace Services.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                
-                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
-                    OAuthDefaults.AuthenticationType);
+
+                ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                   OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
@@ -329,7 +435,7 @@ namespace Services.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new User() { UserName = model.Username, Email = model.Email, CityId = model.CityId, ProfilePicture = model.ProfilePicture , RegisterDate = DateTime.Now, Facebook = model.Facebook, Skype = model.Skype, PhoneNumber = model.PhoneNumber };
+            var user = new User() { UserName = model.Username, Email = model.Email, CityId = model.CityId, ProfilePicture = model.ProfilePicture, RegisterDate = DateTime.Now, Facebook = model.Facebook, Skype = model.Skype, PhoneNumber = model.PhoneNumber };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -369,7 +475,7 @@ namespace Services.Controllers
             result = await UserManager.AddLoginAsync(user.Id, info.Login);
             if (!result.Succeeded)
             {
-                return GetErrorResult(result); 
+                return GetErrorResult(result);
             }
             return Ok();
         }

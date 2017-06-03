@@ -1,7 +1,10 @@
 ﻿'use strict';
 
-app.controller('ProductDetailsController',
-    function ($scope, productsService, notifyService, $location, $routeParams) {
+app.controller('ViewProductController',
+    function ($rootScope, $scope, productsService, notifyService, $location, $routeParams) {
+
+        $rootScope.title = "Product details";
+
          $scope.product = function () {
             productsService.getProductById(
                 $routeParams.id,

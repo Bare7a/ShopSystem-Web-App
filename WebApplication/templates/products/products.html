@@ -21,7 +21,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    <select ng-options="category.Id as category.Name for category in categories" class="form-control" id="category" ng-model="productsParams.cateogryId">
+                                    <select ng-options="category.Id as category.Name for category in categories" class="form-control" id="category" ng-model="productsParams.categoryId">
                                         <option value="">-- All Categories --</option>
                                     </select>
                                 </div>
@@ -96,5 +96,4 @@
 <div class="text-center">
     <ul uib-pagination total-items="products.productsCount" ng-model="productsParams.startPage" items-per-page="productsParams.pageSize"
         max-size="8" class="pagination-sm" boundary-link-numbers="true" ng-change="reloadProducts()" previous-text="&laquo;" next-text="&raquo;"></ul>
-</div>
 </div>

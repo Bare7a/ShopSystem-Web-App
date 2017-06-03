@@ -59,7 +59,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Comment.cs" />
-    <Compile Include="Models\ConditionType.cs" />
+    <Compile Include="Models\Condition.cs" />
     <Compile Include="Models\Feedback.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Picture.cs" />

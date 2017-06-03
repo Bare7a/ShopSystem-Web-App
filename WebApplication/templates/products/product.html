@@ -3,16 +3,23 @@
         <div class="col-sm-9">
             <div class="panel panel-default shadow-effect">
                 <div class="panel-heading">
+                    <a class="pull-right" href="products/edit/{{product.Id}}" ng-if="product.Submiter.Username == authService.getCurrentUsername()"><span class="fa fa-edit"></span></a>
                     <h1 class="panel-title">Category: {{product.Category}}</h1>
                 </div>
                 <div class="panel-body">
-                    <h1 class="text-center">{{product.Name}}</h1>
-                    <h4 class="col-sm-3 col-xs-6"> <span class="fa fa-shopping-cart"> </span> {{product.Price}} &euro;</h4>
-                    <h4 class="col-sm-3 col-xs-6"> <span class="fa fa-tags"> </span> {{product.Condition}}</h4>
-                    <h4 class="col-sm-3 col-xs-6"> <span class="fa fa-plus-circle"> </span> {{product.Quantity}}</h4>
-                    <h4 class="col-sm-3 col-xs-6"> <span class="fa fa-calendar"> </span> {{product.CreateDate | date:'dd.MM.yyyy'}}</h4>
-                    <hr>
-                    <h4>{{product.Description}}</h4>  
+                    <div class="col-xs-12">
+                        <h1 class="text-center">{{product.Name}}</h1>
+                        <h4 class="col-sm-3 col-xs-6"> <span class="fa fa-shopping-cart"> </span> {{product.Price}} &euro;</h4>
+                        <h4 class="col-sm-3 col-xs-6"> <span class="fa fa-tags"> </span> {{product.Condition}}</h4>
+                        <h4 class="col-sm-3 col-xs-6"> <span class="fa fa-plus-circle"> </span> {{product.Quantity}}</h4>
+                        <h4 class="col-sm-3 col-xs-6"> <span class="fa fa-calendar"> </span> {{product.CreateDate | date:'dd.MM.yyyy'}}</h4>
+                    </div>
+                    <hr/>
+                    <p class="col-sm-3 col-xs-6" ng-repeat="picture in pictures"><img class="img-responsive" src="{{picture.Image}}" /></p>
+                    <div class="col-xs-12">
+                        <h4>Description</h4>
+                        <p class="col-xs12">{{product.Description}}</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -25,27 +32,14 @@
                 <div class="panel-body">
                     <h4><span class="fa fa-user"> </span> <a href="/user/{{product.Submiter.Username}}">{{product.Submiter.Username}}</a></h4>
                     <h4><span class="fa fa-home"> </span> {{product.Submiter.City}}</h4>
+                    <h4 ng-if="product.Submiter.Username != authService.getCurrentUsername()"><span class="fa fa-envelope"> </span> <a href="messages/sent/{{product.Submiter.Username}}">Sent a PM</a></h4>
                     <h4 ng-if="product.Submiter.Facebook"><span class="fa fa-facebook"> </span> <a href="{{product.Submiter.Facebook}}">Facebook</a></h4>
                     <h4 ng-if="product.Submiter.Skype"><span class="fa fa-skype"> </span> <a href="skype:{{product.Submiter.Skype}}?chat"> {{product.Submiter.Skype}}</a></h4>
-                    <h4 ng-if="product.Submiter.Phone"><span class="fa fa-phone"> </span> {{product.Submiter.PhoneNumber}}</h4>
+                    <h4 ng-if="product.Submiter.PhoneNumber"><span class="fa fa-phone"> </span> {{product.Submiter.PhoneNumber}}</h4>
                     <h4><span class="fa fa-star"> </span> {{product.Submiter.Feedback}} / 5</h4>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="panel panel-default shadow-effect">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Pictures</h3>
-                </div>
-                <div class="panel-body">
-                    <p class="col-sm-3 col-xs-6" ng-repeat="picture in pictures"><img class="img-responsive" src="{{picture.Image}}" /></p>
-                </div>
-            </div>
-        </div>
-
     </div>
 
     <div ng-if="videos.length != 0" class="row">

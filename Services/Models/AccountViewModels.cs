@@ -34,6 +34,40 @@ namespace Services.Models
         public string LoginProvider { get; set; }
     }
 
+    public class ProfileViewModel
+    {
+        public string Username { get; set; }
+
+        public string ProfilePicture { get; set; }
+
+        public string PhoneNumber { get; set; }
+
+        public string Facebook { get; set; }
+
+        public string Skype { get; set; }
+
+        public string City { get; set; }
+
+    }
+
+    public class UserEditViewModel
+    {
+        public string Username { get; set; }
+
+        public string Email { get; set; }
+
+        public string ProfilePicture { get; set; }
+
+        public string PhoneNumber { get; set; }
+
+        public string Facebook { get; set; }
+
+        public string Skype { get; set; }
+
+        public int CityId { get; set; }
+
+    }
+
     public class UserLoginInfoViewModel
     {
         public string LoginProvider { get; set; }

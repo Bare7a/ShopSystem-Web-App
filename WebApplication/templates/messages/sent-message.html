@@ -7,7 +7,7 @@
                 </div>
                 <div class="panel-body">
                     <input type="text" class="form-control" ng-model="messageData.Title" required="required" placeholder="Title"/>
-                    <input type="text" class="form-control" ng-model="messageData.AddresseeUsername" required="required" placeholder="Addresee Username"/>
+                    <input type="text" class="form-control" ng-model="messageData.AddresseeUsername" required="required" value="{{$routeParameters.username}}" placeholder="Addresee Username"/>
                     <textarea class="form-control" id="comment" ng-model="messageData.Content" required="required" placeholder="Message"></textarea>
                     <a ng-click="addMessage(messageData)" class="btn btn-success btn-block">Send Message</a>
                 </div>

@@ -4,7 +4,6 @@ namespace Data
     using Microsoft.AspNet.Identity.EntityFramework;
     using Data.Models;
     using System.Data.Entity;
-    using System.Data.Entity.ModelConfiguration.Conventions;
 
     public class ShopContext : IdentityDbContext<User>
     {

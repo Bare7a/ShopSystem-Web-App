@@ -1,6 +1,6 @@
 ﻿namespace Data.Models
 {
-    public enum ConditionType
+    public enum Condition
     {
         New,
         Used

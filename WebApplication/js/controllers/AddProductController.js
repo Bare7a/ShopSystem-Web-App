@@ -1,13 +1,15 @@
 ﻿'use strict';
 
-app.controller('AddProductsController',
-    function ($scope, productsService, notifyService, categoriesService, $location, $compile) {
+app.controller('AddProductController',
+    function ($rootScope, $scope, productsService, notifyService, categoriesService, $location, $compile) {
+
+        $rootScope.title = "Add a new product";
 
         $scope.addProduct = function () {
             productsService.createProduct(
                 $scope.productData,
                 function success(response) {
-                    $location.path('/user/products');
+                    $location.path('/products/user');
                     notifyService.showInfo("Product successfully added!");
                 },
                 function error(response) {

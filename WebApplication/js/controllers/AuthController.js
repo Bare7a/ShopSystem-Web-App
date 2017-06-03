@@ -1,7 +1,10 @@
 ﻿'use strict';
 
 app.controller('AuthController',
-    function ($scope, $location, citiesService, authService, notifyService) {
+    function ($rootScope, $scope, $location, citiesService, authService, notifyService) {
+
+        $rootScope.title = "Login";
+
         $scope.userData = {cityId: null};
         $scope.cities = citiesService.getCities();
 
@@ -23,7 +26,7 @@ app.controller('AuthController',
                     if (authService.getCurrentUser().isAdmin)
                         $location.path('/admin/home');
                     else
-                        $location.path('/user/home/');
+                        $location.path('/');
                 },
                 function error(err) {
                     notifyService.showError("Failed to login", err);

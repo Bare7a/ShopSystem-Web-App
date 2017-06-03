@@ -22,7 +22,7 @@ app.factory('authService',
                 });
             },
 
-            register: function(userData, success, error) {
+            register: function (userData, success, error) {
                 var registerData = 'Username=' + userData.username +
                     '&Password=' + userData.password +
                     '&ConfirmPassword=' + userData.confirmPassword +
@@ -46,11 +46,11 @@ app.factory('authService',
                 });
             },
 
-            logout: function() {
+            logout: function () {
                 sessionStorage.removeItem('currentUser');
             },
 
-            getCurrentUser : function() {
+            getCurrentUser: function () {
                 var userObject = sessionStorage['currentUser'];
                 if (userObject) {
                     return JSON.parse(sessionStorage['currentUser']);
@@ -72,17 +72,17 @@ app.factory('authService',
                 return sessionStorage['currentUser'] != undefined;
             },
 
-            isNormalUser : function() {
+            isNormalUser: function () {
                 var currentUser = this.getCurrentUser();
                 return (currentUser != undefined) && (!currentUser.isAdmin);
             },
 
-            isAdmin : function() {
+            isAdmin: function () {
                 var currentUser = this.getCurrentUser();
                 return (currentUser != undefined) && (currentUser.isAdmin);
             },
 
-            getAuthHeaders : function() {
+            getAuthHeaders: function () {
                 var headers = {};
                 var currentUser = this.getCurrentUser();
 

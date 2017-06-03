@@ -28,7 +28,7 @@ namespace Data.Models
 
         public int Quantity { get; set; }
 
-        public ConditionType Condition { get; set; }
+        public Condition Condition { get; set; }
 
         [Required]
         [MinLength(3)]

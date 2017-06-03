@@ -35,6 +35,7 @@ namespace Services.Models
     public class RegisterBindingModel
     {
         [Required]
+        [MaxLength(30)]
         public string Username { get; set; }
 
         [Required]
@@ -69,6 +70,39 @@ namespace Services.Models
         [MinLength(4)]
         [MaxLength(20)]
         public string PhoneNumber { get; set; }
+    }
+
+    public class AccountEditBindingModel
+    {
+        [MaxLength(30)]
+        public string Username { get; set; }
+
+        [MaxLength(500000)]
+        public string ProfilePicture { get; set; }
+
+        [MinLength(6)]
+        public string OldPassword { get; set; }
+
+        [MinLength(6)]
+        public string NewPassword { get; set; }
+
+        [Required]
+        public string Email { get; set; }
+
+        [MinLength(4)]
+        [MaxLength(20)]
+        public string PhoneNumber { get; set; }
+
+        [MinLength(3)]
+        [MaxLength(60)]
+        public string Facebook { get; set; }
+
+        [MinLength(3)]
+        [MaxLength(60)]
+        public string Skype { get; set; }
+
+        [Required]
+        public int CityId { get; set; }
     }
 
     public class RegisterExternalBindingModel

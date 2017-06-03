@@ -1,0 +1,85 @@
+﻿<div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-md-offset-3">
+        <div class="panel panel-default shadow-effect ">
+            <div class="panel-heading">
+                <h3 class="panel-title">Edit Profile</h3>
+            </div>
+            <div class="panel-body">
+                <form role="form">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <input type="text" name="username" id="username" ng-model="user.Username" class="form-control" placeholder="Username" required="required">
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <input type="email" name="email" id="email" ng-model="user.Email" class="form-control" placeholder="Email Address" nequired="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <input type="password" name="password" id="password" ng-model="user.OldPassword" class="form-control" placeholder="Old Password">
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <input type="password" name="confirmPassword" ng-model="user.NewPassword" id="confirmPassword" class="form-control" placeholder="New Password">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <select ng-options="city.Id as city.Name for city in cities" class="form-control" id="city" ng-model="user.CityId" required="required">
+                                    <option value="">-- Select a City --</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <input type="file" name="profilePicture" class="inputfile" ng-model="user.ProfilePicture" id="profilePicture" onchange="angular.element(this).scope().fileSelected(this)" />
+                                <label class="btn btn-success btn-block" for="profilePicture">Upload Avatar</label>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <input type="text" name="phoneNumber" id="phoneNumber" ng-model="user.PhoneNumber" class="form-control" placeholder="Phone Number">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="image-box img-responsive col-xs-12">
+                            <img class="img-responsive" src="{{user.ProfilePicture}}">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <input type="text" name="facebook" id="facebook" ng-model="user.Facebook" class="form-control" placeholder="Facebook">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <input type="text" name="skype" id="skype" ng-model="user.Skype" class="form-control" placeholder="Skype">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <input type="submit" class="btn btn-info btn-block" ng-click="editProfile(profileData)" value="Confirm Changes">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

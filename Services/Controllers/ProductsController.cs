@@ -312,7 +312,7 @@ namespace Services.Controllers
                 Name = model.Name,
                 Description = model.Description,
                 Price = model.Price,
-                Condition = (ConditionType)model.ConditionId,
+                Condition = (Condition)model.ConditionId,
                 Quantity = model.Quantity,
                 Pictures = pictures,
                 Videos = videos,
@@ -367,7 +367,7 @@ namespace Services.Controllers
             product.Price = model.Price;
             product.Quantity = model.Quantity;
             product.CategoryId = model.CategoryId;
-            product.Condition = (ConditionType)model.ConditionId;
+            product.Condition = (Condition)model.ConditionId;
 
             this.Data.SaveChanges();
 

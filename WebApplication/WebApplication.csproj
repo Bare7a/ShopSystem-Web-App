@@ -71,16 +71,22 @@
     <Content Include="css\background.png" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\styles.css" />
+    <Content Include="favicon.png" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="js\app.js" />
+    <Content Include="js\controllers\AddMessageController.js" />
     <Content Include="js\controllers\EditProductsController.js" />
-    <Content Include="js\controllers\AddProductsController.js" />
+    <Content Include="js\controllers\AddProductController.js" />
     <Content Include="js\controllers\AppController.js" />
     <Content Include="js\controllers\AuthController.js" />
-    <Content Include="js\controllers\ProductsController.js" />
-    <Content Include="js\controllers\MessagesController.js" />
-    <Content Include="js\controllers\ProductDetailsController.js" />
-    <Content Include="js\controllers\UserProductsController.js" />
+    <Content Include="js\controllers\EditProfileController.js" />
+    <Content Include="js\controllers\ViewMessageController.js" />
+    <Content Include="js\controllers\ListProductsController.js" />
+    <Content Include="js\controllers\ListMessagesController.js" />
+    <Content Include="js\controllers\ViewProductController.js" />
+    <Content Include="js\controllers\ViewProfileController.js" />
+    <Content Include="js\controllers\ViewOwnProductsController.js" />
+    <Content Include="js\services\accountsService.js" />
     <Content Include="js\services\authService.js" />
     <Content Include="js\services\messagesService.js" />
     <Content Include="js\services\notifyService.js" />
@@ -919,9 +925,11 @@
     <Content Include="templates\products\products.html" />
     <Content Include="templates\messages\messages.html" />
     <Content Include="templates\header.html" />
+    <Content Include="templates\users\edit-profile.html" />
     <Content Include="templates\users\login.html" />
     <Content Include="templates\products\product.html" />
     <Content Include="templates\products\user-products.html" />
+    <Content Include="templates\users\profile.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,6 @@
-﻿app.factory('messagesService',
+﻿'use strict';
+
+app.factory('messagesService',
     function ($http, baseServiceUrl, authService) {
         return {
 
@@ -10,8 +12,6 @@
                     headers: authService.getAuthHeaders(),
                     data: messageData
                 };
-
-                console.log(request);
 
                 $http(request).then(success, error);
             },
@@ -38,4 +38,5 @@
             }
 
         };
-    });
+    }
+);

@@ -17,13 +17,16 @@
                     <a href="/products/add">Add a Product</a>
                 </li>
                 <li ng-if="authService.isLoggedIn()">
-                    <a href="/user/products">My Products</a>
+                    <a href="/products/user">My Products</a>
                 </li>
                 <li ng-if="authService.isAnonymous()">
                     <a href="/login">Login</a>
                 </li>
                 <li ng-if="authService.isLoggedIn()">
                     <a href="/messages">Messages</a>
+                </li>
+                <li ng-if="authService.isLoggedIn()">
+                    <a href="/user/{{authService.getCurrentUsername()}}" class="link">Account</a>
                 </li>
                 <li ng-if="authService.isLoggedIn()">
                     <a ng-click="logout()" class="link">Logout</a>

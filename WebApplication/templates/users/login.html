@@ -9,18 +9,18 @@
                     <div class="row">
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <input type="text" name="username" id="username" ng-model="loginData.username" class="form-control" placeholder="Username">
+                                <input type="text" name="username" id="username" ng-model="loginData.username" class="form-control" placeholder="Username" required="required">
                             </div>
                         </div>
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <input type="password" name="password" id="password" ng-model="loginData.password" class="form-control" placeholder="Password">
+                                <input type="password" name="password" id="password" ng-model="loginData.password" class="form-control" placeholder="Password" required="required">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <a class="btn btn-info btn-block" ng-click="login(loginData)">Login</a>
+                            <input type="submit" class="btn btn-info btn-block" ng-click="login(loginData)" value="Login">
                         </div>
                     </div>
                 </form>
@@ -104,7 +104,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <a class="btn btn-info btn-block" ng-click="register(userData)">Register</a>
+                            <input type="submit" class="btn btn-info btn-block" ng-click="register(userData)" value="Register">
                         </div>
                     </div>
                 </form>
