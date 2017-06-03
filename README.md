@@ -61,15 +61,16 @@
   - [x] Home Screen
   - [x] Login Screen
   - [x] Register Screen
-  
-- [x] [User Screens]
   - [x] Products List
   - [x] Product Details
+  - [x] User Details
+  
+- [x] [User Screens]
+
   - [x] Publish New Product
   - [x] List My Products
   - [x] Edit Product
   - [x]	Delete Product
-  - [x] User Details
   - [x] Edit Account Info
   - [x]	List all Messages
   - [x]	Read Message
