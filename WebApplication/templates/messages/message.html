@@ -23,7 +23,7 @@
                     <h1 class="panel-title">Reply to this message</h1>
                 </div>
                 <div class="panel-body">
-                    <input type="text" class="form-control" ng-model="messageData.Title" value="Re: {{message.Title}}" placeholder="Title"/>
+                    <input type="text" class="form-control" ng-model="messageData.Title" placeholder="Title"/>
                     <input type="text" style="display: none;" value="{{messageData.AddresseeUsername = authService.getCurrentUsername() != message.SenderUsername? message.SenderUsername : message.AddresseeUsername}}" />
                     <textarea class="form-control" id="comment" ng-model="messageData.Content" required="required" placeholder="Message"></textarea>
                     <a ng-click="addMessage(messageData)" class="btn btn-success btn-block">Send Message</a>

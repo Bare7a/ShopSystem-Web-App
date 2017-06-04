@@ -141,7 +141,7 @@ namespace Services.Controllers
                 {
                     case "PriceAsc": products = products.OrderBy(p => p.Price).ThenByDescending(p => p.Id); break;
                     case "PriceDesc": products = products.OrderByDescending(p => p.Price).ThenByDescending(p => p.Id); break;
-                    case "Feedback": products = products.OrderByDescending(p => (p.User.RecievedFeedbacks.Count == 0 ? 0.0 : p.User.RecievedFeedbacks.Sum(f => f.Score) / p.User.RecievedFeedbacks.Count())).ThenByDescending(p => p.Id); break;
+                    case "Feedback": products = products.OrderByDescending(p => (p.User.RecievedFeedbacks.Count == 0 ? 0.0 : p.User.RecievedFeedbacks.Sum(f => f.Score) / (double) p.User.RecievedFeedbacks.Count())).ThenByDescending(p => p.Id); break;
                     case "DateAsc": products = products.OrderBy(p => p.CreateDate).ThenByDescending(p => p.Id); break;
                     default: products = products.OrderByDescending(p => p.CreateDate).ThenBy(p => p.Id); break;
                 }
@@ -178,7 +178,7 @@ namespace Services.Controllers
                 Description = p.Description,
                 Picture = p.Pictures.Select(pi => pi.Image).FirstOrDefault(),
                 Submiter = p.User.UserName,
-                Feedback = p.User.RecievedFeedbacks.Count == 0 ? 0.0 : p.User.RecievedFeedbacks.Sum(f => f.Score) / p.User.RecievedFeedbacks.Count(),
+                Feedback = p.User.RecievedFeedbacks.Count == 0 ? 0.0 : Math.Round(p.User.RecievedFeedbacks.Sum(f => f.Score) / (double) p.User.RecievedFeedbacks.Count(), 2),
                 City = p.User.City.Name,
                 Category = p.Category.Name,
                 CreateDate = p.CreateDate
@@ -217,7 +217,7 @@ namespace Services.Controllers
                     Submiter = new SubmiterViewModel
                     {
                         Username = p.User.UserName,
-                        Feedback = p.User.RecievedFeedbacks.Count == 0 ? 0.0 : p.User.RecievedFeedbacks.Sum(f => f.Score) / p.User.RecievedFeedbacks.Count(),
+                        Feedback = p.User.RecievedFeedbacks.Count == 0 ? 0.0 : Math.Round(p.User.RecievedFeedbacks.Sum(f => f.Score) / (double) p.User.RecievedFeedbacks.Count(), 2),
                         City = p.User.City.Name,
                         Facebook = p.User.Facebook,
                         PhoneNumber = p.User.PhoneNumber,
@@ -274,6 +274,7 @@ namespace Services.Controllers
             Regex vbox7Regex = new Regex(@"play:([\d\w]*)");
             Regex vimeoRegex = new Regex(@"vimeo.com\/([\d]*)");
             Regex youtubeRegex = new Regex(@"watch\?v=([\d\w-_]*)");
+            Regex youtubeShortRegex = new Regex(@"youtu.be\/([\d\w-_]*)");
 
             ICollection<Video> videos = new HashSet<Video>();
             foreach (var video in model.videos)
@@ -295,16 +296,24 @@ namespace Services.Controllers
                 {
                     match = youtubeRegex.Match(video.UrlAddress);
                     urlAddress = match.Groups[1].Value;
+
+                    if (urlAddress == "")
+                    {
+                        match = youtubeShortRegex.Match(video.UrlAddress);
+                        urlAddress = match.Groups[1].Value;
+                    }
                 }
 
-                if (urlAddress != "")
+                if (urlAddress == "")
                 {
-                    videos.Add(new Video
-                    {
-                        UrlAddress = urlAddress,
-                        VideoType = (VideoType)video.VideoType
-                    });
+                    return BadRequest(String.Format("The video ({0}) was not valid!", video.UrlAddress));
                 }
+
+                videos.Add(new Video
+                {
+                    UrlAddress = urlAddress,
+                    VideoType = (VideoType)video.VideoType
+                });
             }
 
             var product = new Product

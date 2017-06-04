@@ -64,6 +64,7 @@ namespace Services.Controllers
             Regex vbox7Regex = new Regex(@"play:([\d\w]*)");
             Regex vimeoRegex = new Regex(@"vimeo.com\/([\d]*)");
             Regex youtubeRegex = new Regex(@"watch\?v=([\d\w-_]*)");
+            Regex youtubeShortRegex = new Regex(@"youtu.be\/([\d\w-_]*)");
 
 
             string urlAddress = "";
@@ -83,6 +84,12 @@ namespace Services.Controllers
             {
                 match = youtubeRegex.Match(model.UrlAddress);
                 urlAddress = match.Groups[1].Value;
+
+                if (urlAddress == "")
+                {
+                    match = youtubeShortRegex.Match(model.UrlAddress);
+                    urlAddress = match.Groups[1].Value;
+                }
             }
 
             if (urlAddress == "")
