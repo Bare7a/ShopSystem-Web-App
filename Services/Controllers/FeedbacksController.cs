@@ -31,7 +31,7 @@ namespace Services.Controllers
                 Score = f.Score,
                 Comment = f.Comment,
                 CreateDate = f.CreateDate
-            });
+            }).OrderByDescending(f => f.CreateDate);
 
             return Ok(feedbacks);
         }
