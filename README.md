@@ -80,4 +80,44 @@
   - [x]	Authorization Checks
 
 ## ShopSystem Database Diagram
-![Database Diagram](database.png)
+![Database Diagram](Screenshots/Database.png)
+
+## ShopSystem Application Screenshots
+- [x] [Login and Register]
+  - [x] Register
+![Register](Screenshots/Login.png)
+  - [x] Register with Data
+![Register with Data](Screenshots/Login+Data.png)
+
+- [x] [Products]
+  - [x] All Products
+![All Products](Screenshots/Products.png)
+  - [x] Filtered Products
+![Filtered Products](Screenshots/ProductsFilter.png)
+  - [x] Add a Product
+![Add a Product](Screenshots/ProductAdd.png)
+  - [x] Add a Product with Data
+![Add a Product with Data](Screenshots/ProductAdd+Data.png)
+  - [x] User Products
+![User Products](Screenshots/ProductsUser.png)
+  - [x] Detailed info about the Product
+![Detailed info about the Product](Screenshots/Product.png)
+  - [x] Edit a Product
+![Edit a Product](Screenshots/ProductEdit.png)
+
+
+- [x] [Messages]
+  - [x] All Messages
+![All Messages](Screenshots/Messages.png)
+  - [x] Reply to a Message
+![Reply to a Message](Screenshots/MessageReply.png)
+  - [x] Message after the reply
+![Message after the reply](Screenshots/MessageReplied.png)
+  - [x] Sent a new Message
+![Sent a new Message](Screenshots/MessageSent.png)
+
+- [x] [Profile]
+  - [x] Edit Profile
+![Edit Profile](Screenshots/ProfileEdit.png)
+  - [x] Submite a user Feedback
+![Submite a user Feedback](Screenshots/ProfileFeedback.png)
