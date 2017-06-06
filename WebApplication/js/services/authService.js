@@ -4,8 +4,8 @@ app.factory('authService',
     function ($http, baseServiceUrl) {
         return {
             login: function (userData, success, error) {
-                var loginData = 'Username=' + userData.username +
-                    '&Password=' + userData.password +
+                var loginData = 'Username=' + userData.Username +
+                    '&Password=' + userData.Password +
                     '&grant_type=password';
 
                 var request = {
@@ -23,21 +23,10 @@ app.factory('authService',
             },
 
             register: function (userData, success, error) {
-                var registerData = 'Username=' + userData.username +
-                    '&Password=' + userData.password +
-                    '&ConfirmPassword=' + userData.confirmPassword +
-                    '&Email=' + userData.email +
-                    '&CityId=' + userData.cityId +
-                    '&ProfilePicture=' + userData.profilePicture +
-                    '&Facebook=' + userData.facebook +
-                    '&Skype=' + userData.skype +
-                    '&PhoneNumber=' + userData.phoneNumber;
-
                 var request = {
                     method: 'POST',
                     url: baseServiceUrl + '/api/Account/Register',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    data: registerData
+                    data: userData
                 };
                 $http(request).then(function (response) {
                     success(response['data']);

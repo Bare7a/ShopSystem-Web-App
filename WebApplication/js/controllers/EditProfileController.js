@@ -35,8 +35,8 @@ app.controller('EditProfileController',
             if (file.type.match(/image\/.*/)) {
                 var reader = new FileReader();
                 reader.onload = function () {
-                    $scope.user.profilePicture = reader.result;
-                    $(".image-box").html("<img class='img-responsive' src='" + reader.result + "'>");
+                    $scope.user.ProfilePicture = reader.result;
+                    $(".image-box").html("<img class='img-responsive avatar-img' src='" + $scope.user.ProfilePicture + "'>");
                 };
                 reader.readAsDataURL(file);
             } else {

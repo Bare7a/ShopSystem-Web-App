@@ -51,7 +51,7 @@ hr {
     border-bottom: 1px dotted #ccc;
 }
 
-.product-img {
+.product-img, .avatar-img {
     margin: 0 auto;
     display: block;
     width: auto;

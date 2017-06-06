@@ -9,12 +9,12 @@
                     <div class="row">
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <input type="text" name="username" id="username" ng-model="loginData.username" class="form-control" placeholder="Username" required="required">
+                                <input type="text" name="username" id="username" ng-model="loginData.Username" class="form-control" placeholder="Username" required="required">
                             </div>
                         </div>
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <input type="password" name="password" id="password" ng-model="loginData.password" class="form-control" placeholder="Password" required="required">
+                                <input type="password" name="password" id="password" ng-model="loginData.Password" class="form-control" placeholder="Password" required="required">
                             </div>
                         </div>
                     </div>
@@ -39,31 +39,31 @@
                     <div class="row">
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <input type="text" name="username" id="username" ng-model="userData.username" class="form-control" placeholder="Username" ng-required="required">
+                                <input type="text" name="username" id="username" ng-model="userData.Username" class="form-control" placeholder="Username" ng-required="required">
                             </div>
                         </div>
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <input type="email" name="email" id="email" ng-model="userData.email" class="form-control" placeholder="Email Address" ng-required="required">
+                                <input type="email" name="email" id="email" ng-model="userData.Email" class="form-control" placeholder="Email Address" ng-required="required">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <input type="password" name="password" id="password" ng-model="userData.password" class="form-control" placeholder="Password" ng-required="required">
+                                <input type="password" name="password" id="password" ng-model="userData.Password" class="form-control" placeholder="Password" ng-required="required">
                             </div>
                         </div>
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <input type="password" name="confirmPassword" ng-model="userData.confirmPassword" id="confirmPassword" class="form-control" placeholder="Confirm Password" ng-required="required">
+                                <input type="password" name="confirmPassword" ng-model="userData.ConfirmPassword" id="confirmPassword" class="form-control" placeholder="Confirm Password" ng-required="required">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="form-group">
-                                <select ng-options="city.Id as city.Name for city in cities" class="form-control" id="city" ng-model="userData.cityId" ng-required="required">
+                                <select ng-options="city.Id as city.Name for city in cities" class="form-control" id="city" ng-model="userData.CityId" ng-required="required">
                                     <option value="">-- Select a City --</option>
                                 </select>
                             </div>
@@ -72,13 +72,13 @@
                     <div class="row">
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <input type="file" name="profilePicture" class="inputfile" ng-model="userData.profilePicture" id="profilePicture" onchange="angular.element(this).scope().fileSelected(this)" />
+                                <input type="file" name="profilePicture" class="inputfile" ng-model="userData.ProfilePicture" id="profilePicture" onchange="angular.element(this).scope().fileSelected(this)" />
                                 <label class="btn btn-success btn-block" for="profilePicture">Upload Avatar</label>
                             </div>
                         </div>
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <input type="text" name="phoneNumber" id="phoneNumber" ng-model="userData.phoneNumber" class="form-control" placeholder="Phone Number">
+                                <input type="text" name="phoneNumber" id="phoneNumber" ng-model="userData.PhoneNumber" class="form-control" placeholder="Phone Number">
                             </div>
                         </div>
                     </div>
@@ -92,13 +92,13 @@
                     <div class="row">
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <input type="text" name="facebook" id="facebook" ng-model="userData.facebook" class="form-control" placeholder="Facebook">
+                                <input type="text" name="facebook" id="facebook" ng-model="userData.Facebook" class="form-control" placeholder="Facebook">
                             </div>
                         </div>
 
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <input type="text" name="skype" id="skype" ng-model="userData.skype" class="form-control" placeholder="Skype">
+                                <input type="text" name="skype" id="skype" ng-model="userData.Skype" class="form-control" placeholder="Skype">
                             </div>
                         </div>
                     </div>

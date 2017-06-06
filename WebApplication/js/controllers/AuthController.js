@@ -5,14 +5,13 @@ app.controller('AuthController',
 
         $rootScope.title = "Login";
 
-        $scope.userData = {cityId: null};
         $scope.cities = citiesService.getCities();
 
         $scope.register = function(userData) {
             authService.register(userData,
             function success() {
-                notifyService.showInfo("Registered successfully");
-                $location.path('/');
+                notifyService.showInfo("Registered successfully </br> You can log in to your account now!");
+                $location.path('/login');
             },
             function error(err) {
                 notifyService.showError("Failed to register", err);
@@ -39,8 +38,8 @@ app.controller('AuthController',
             if (file.type.match(/image\/.*/)) {
                 var reader = new FileReader();
                 reader.onload = function () {
-                    $scope.userData.profilePicture = reader.result;
-                    $(".image-box").html("<img class='img-responsive' src='" + reader.result + "'>");
+                    $scope.userData.ProfilePicture = reader.result;
+                    $(".image-box").html("<img class='img-responsive avatar-img' src='" + $scope.userData.ProfilePicture + "'>");
                 };
                 reader.readAsDataURL(file);
             } else {

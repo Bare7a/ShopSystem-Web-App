@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-    <div class="row col-md-10 col-sm-9 custyle">
+    <div class="row col-md-10 col-sm-9 custyle" ng-if="messages.messages.length!=0">
         <table class="table table-striped custab">
             <thead>
                 <tr>
@@ -38,10 +38,9 @@
                 </tr>
         </table>
     </div>
-</div>
-
-<div ng-if="messages.messages.length==0" class="box no-data">
-    No messages.
+    <div ng-if="messages.messages.length==0" class="box no-data">
+        <h1 class="text-center">No messages</h1>
+    </div>
 </div>
 
 <div class="text-center">
