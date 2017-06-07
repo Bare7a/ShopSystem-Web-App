@@ -119,5 +119,5 @@
 - [x] [Profile]
   - [x] Edit Profile
 ![Edit Profile](Screenshots/ProfileEdit.png)
-  - [x] Submite a user Feedback
-![Submite a user Feedback](Screenshots/ProfileFeedback.png)
+  - [x] Submit a user Feedback
+![Submit a user Feedback](Screenshots/ProfileFeedback.png)
