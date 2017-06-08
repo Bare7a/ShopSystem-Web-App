@@ -121,3 +121,19 @@
 ![Edit Profile](Screenshots/ProfileEdit.png)
   - [x] Submit a user Feedback
 ![Submit a user Feedback](Screenshots/ProfileFeedback.png)
+
+- [x] [Responsiveness]
+<img src="Screenshots/responsive_1.png" width="200px"/>
+<img src="Screenshots/responsive_2.png" width="200px"/>
+<img src="Screenshots/responsive_3.png" width="200px"/>
+<img src="Screenshots/responsive_4.png" width="200px"/>
+<img src="Screenshots/responsive_5.png" width="200px"/>
+<img src="Screenshots/responsive_6.png" width="200px"/>
+<img src="Screenshots/responsive_7.png" width="200px"/>
+<img src="Screenshots/responsive_8.png" width="200px"/>
+<img src="Screenshots/responsive_9.png" width="200px"/>
+<img src="Screenshots/responsive_10.png" width="200px"/>
+<img src="Screenshots/responsive_11.png" width="200px"/>
+<img src="Screenshots/responsive_12.png" width="200px"/>
+<img src="Screenshots/responsive_13.png" width="200px"/>
+<img src="Screenshots/responsive_14.png" width="200px"/>
