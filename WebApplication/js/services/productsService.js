@@ -54,6 +54,16 @@ app.factory('productsService',
                 $http(request).then(success, error);
             },
 
+            deleteCommentById: function (id, success, error) {
+                var request = {
+                    method: 'DELETE',
+                    url: baseServiceUrl + '/api/Comments/' + id,
+                    headers: authService.getAuthHeaders(),
+                };
+
+                $http(request).then(success, error);
+            },
+
             getAllUserProducts: function (params, success, error) {
                 var request = {
                     method: 'GET',

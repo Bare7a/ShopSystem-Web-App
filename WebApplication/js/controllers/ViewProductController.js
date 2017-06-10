@@ -54,6 +54,18 @@ app.controller('ViewProductController',
                     notifyService.showError("Failed to add a comment.", response);
                 }
             );
+         };
+
+        $scope.deleteComment = function (commentId) {
+            productsService.deleteCommentById(commentId, 
+                function success() {
+                    $scope.reloadComments();
+                    notifyService.showInfo("Comment successfully deleted!");
+                },
+                function error(response) {
+                    notifyService.showError("Failed to delete a comment.", response);
+                }
+            );
         };
 
         $scope.reloadComments = function () {

@@ -80,7 +80,8 @@
                         <p class="pull-right"><small>{{comment.CreateDate | date:'dd-MM-yyyy HH:mm'}}</small></p>
                         <div class="media-body">
 
-                            <h4 class="media-heading user_name">{{comment.Username}}</h4>
+                            <h4 class="media-heading" ng-if="comment.Username != authService.getCurrentUsername()">{{comment.Username}}</h4>
+                            <h4 class="media-heading" ng-if="comment.Username == authService.getCurrentUsername()">{{comment.Username}} <small><a href="" ng-click="deleteComment(comment.Id)"><span class="fa fa-close"></span></a></small></h4>
                             <p>{{comment.Content}}</p>
                         </div>
                     </div>

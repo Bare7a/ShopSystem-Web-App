@@ -129,6 +129,7 @@ namespace Services.Controllers
             }
 
             this.Data.Comments.Remove(comment);
+            this.Data.SaveChanges();
 
             return Ok("Comment was successfully removed!");
         }
