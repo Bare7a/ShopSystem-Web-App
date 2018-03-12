@@ -1,4 +1,4 @@
-#Shop System - Web Application
+# Shop System - Web Application
 ## ShopSystem DataBase
 - [x] [Database Tables]
   - [x] Categories
